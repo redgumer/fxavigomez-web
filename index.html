@@ -56,14 +56,8 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding: 28px clamp(24px, 5vw, 80px);
-    }
-
-    .brand {
-      font-weight: 700;
-      letter-spacing: .02em;
-      font-size: 1.05rem;
     }
 
     .languages {
@@ -179,7 +173,6 @@
       }
 
       header { padding: 20px; }
-      .brand { font-size: .96rem; }
       .languages { gap: 2px; }
       .languages button { padding: 6px 7px; font-size: .69rem; }
 
@@ -200,7 +193,6 @@
 <body>
   <main class="hero">
     <header>
-      <div class="brand">Xavier Gómez</div>
       <nav class="languages" aria-label="Idioma">
         <button class="active" data-lang="es" type="button">ES</button>
         <button data-lang="ca" type="button">CA</button>
