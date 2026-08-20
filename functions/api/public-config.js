@@ -1,6 +1,6 @@
-export async function onRequestGet({ env }) {
+export async function onRequestGet() {
   return new Response(JSON.stringify({
-    turnstileSiteKey: env.TURNSTILE_SITE_KEY || ''
+    turnstileSiteKey: '0x4AAAAAAAEWf1fOAxL2xtgbCS'
   }), {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
