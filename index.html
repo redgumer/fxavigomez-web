@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Web personal de Xavier Gómez: trayectoria, tecnología y proyectos.">
   <title>Xavier Gómez</title>
+  <link rel="icon" type="image/png" href="assets/images/redgumer-logo.png">
   <style>
     :root {
       --bg: #081019;
@@ -12,10 +13,13 @@
       --muted: #b8c0ca;
       --line: rgba(255,255,255,.16);
       --accent: #f0a55a;
+      --paper: #f1f0ea;
+      --ink: #111a22;
+      --paper-muted: #59636c;
+      --paper-line: rgba(17,26,34,.14);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -32,8 +36,8 @@
       align-items: center;
       overflow: hidden;
       background-image:
-        linear-gradient(90deg, rgba(5,12,18,.97) 0%, rgba(5,12,18,.88) 31%, rgba(5,12,18,.45) 56%, rgba(5,12,18,.08) 82%),
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.26)),
+        linear-gradient(90deg, rgba(5,12,18,.97) 0%, rgba(5,12,18,.87) 30%, rgba(5,12,18,.30) 57%, rgba(5,12,18,.03) 82%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.20)),
         url('assets/images/hero-xavier.png');
       background-size: cover;
       background-position: center center;
@@ -43,8 +47,8 @@
       content: "";
       position: absolute;
       inset: auto 0 0;
-      height: 26%;
-      background: linear-gradient(transparent, rgba(5,12,18,.72));
+      height: 24%;
+      background: linear-gradient(transparent, rgba(5,12,18,.76));
       pointer-events: none;
     }
 
@@ -56,8 +60,18 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      padding: 28px clamp(24px, 5vw, 80px);
+      justify-content: space-between;
+      padding: 24px clamp(24px, 5vw, 80px);
+    }
+
+    .brand-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      opacity: .94;
     }
 
     .languages {
@@ -119,7 +133,7 @@
       background: currentColor;
     }
 
-    h1 {
+    .hero h1 {
       font-size: clamp(3.4rem, 7vw, 7rem);
       line-height: .92;
       letter-spacing: -.055em;
@@ -128,10 +142,10 @@
     }
 
     .intro {
-      max-width: 620px;
+      max-width: 610px;
       color: var(--muted);
       font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-      line-height: 1.7;
+      line-height: 1.66;
       text-wrap: balance;
     }
 
@@ -157,10 +171,142 @@
       z-index: 3;
       left: clamp(24px, 5vw, 80px);
       bottom: 26px;
-      color: rgba(255,255,255,.52);
+    }
+
+    .scroll-note a {
+      color: rgba(255,255,255,.56);
       font-size: .77rem;
       letter-spacing: .12em;
       text-transform: uppercase;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .scroll-note a:hover { color: #fff; }
+
+    .about {
+      background: var(--paper);
+      color: var(--ink);
+      padding: clamp(84px, 10vw, 150px) clamp(24px, 6vw, 96px);
+    }
+
+    .about-inner {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+    }
+
+    .about-top {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+      gap: clamp(48px, 8vw, 120px);
+      align-items: start;
+      margin-bottom: clamp(70px, 9vw, 120px);
+    }
+
+    .section-kicker {
+      color: #8f5b28;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .about h2 {
+      font-size: clamp(3rem, 6vw, 6.3rem);
+      line-height: .95;
+      letter-spacing: -.055em;
+      max-width: 560px;
+    }
+
+    .about-copy {
+      padding-top: 8px;
+      max-width: 720px;
+    }
+
+    .about-copy .lead {
+      font-size: clamp(1.35rem, 2.25vw, 2rem);
+      line-height: 1.42;
+      letter-spacing: -.025em;
+      margin-bottom: 28px;
+      text-wrap: balance;
+    }
+
+    .about-copy p:last-child {
+      color: var(--paper-muted);
+      font-size: 1.04rem;
+      line-height: 1.8;
+      max-width: 68ch;
+    }
+
+    .timeline-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--paper-line);
+    }
+
+    .timeline-label h3 {
+      font-size: clamp(1.4rem, 2vw, 1.85rem);
+      letter-spacing: -.025em;
+    }
+
+    .timeline-label span {
+      color: var(--paper-muted);
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-top: 1px solid var(--paper-line);
+      border-bottom: 1px solid var(--paper-line);
+    }
+
+    .timeline-item {
+      min-height: 250px;
+      padding: 26px 24px 30px;
+      border-right: 1px solid var(--paper-line);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-item:last-child { border-right: 0; }
+
+    .timeline-item .time {
+      color: #8f5b28;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: auto;
+    }
+
+    .timeline-item h4 {
+      font-size: 1.25rem;
+      line-height: 1.2;
+      letter-spacing: -.025em;
+      margin: 34px 0 12px;
+    }
+
+    .timeline-item p {
+      color: var(--paper-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 920px) {
+      .about-top { grid-template-columns: 1fr; gap: 34px; }
+      .about h2 { max-width: 100%; }
+      .timeline { grid-template-columns: 1fr 1fr; }
+      .timeline-item { border-bottom: 1px solid var(--paper-line); }
+      .timeline-item:nth-child(2n) { border-right: 0; }
+      .timeline-item:last-child { border-bottom: 0; }
     }
 
     @media (max-width: 820px) {
@@ -168,11 +314,12 @@
         align-items: end;
         background-position: 68% center;
         background-image:
-          linear-gradient(180deg, rgba(5,12,18,.12) 0%, rgba(5,12,18,.30) 38%, rgba(5,12,18,.93) 75%, #050c12 100%),
+          linear-gradient(180deg, rgba(5,12,18,.10) 0%, rgba(5,12,18,.25) 38%, rgba(5,12,18,.93) 75%, #050c12 100%),
           url('assets/images/hero-xavier.png');
       }
 
-      header { padding: 20px; }
+      header { padding: 18px 20px; }
+      .brand-logo { width: 48px; height: 48px; }
       .languages { gap: 2px; }
       .languages button { padding: 6px 7px; font-size: .69rem; }
 
@@ -182,17 +329,33 @@
       }
 
       .copy { max-width: 100%; }
-      h1 { font-size: clamp(3.2rem, 15vw, 5.4rem); margin-bottom: 20px; }
+      .hero h1 { font-size: clamp(3.2rem, 15vw, 5.4rem); margin-bottom: 20px; }
       .intro { font-size: 1.02rem; line-height: 1.62; max-width: 36rem; }
       .status { margin-top: 24px; }
       .status span { font-size: .78rem; }
       .scroll-note { display: none; }
+
+      .about { padding: 72px 22px 84px; }
+      .timeline-label { align-items: flex-start; flex-direction: column; gap: 8px; }
+    }
+
+    @media (max-width: 620px) {
+      .timeline { grid-template-columns: 1fr; }
+      .timeline-item,
+      .timeline-item:nth-child(2n) {
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--paper-line);
+      }
+      .timeline-item .time { margin-bottom: 24px; }
+      .timeline-item h4 { margin-top: 0; }
     }
   </style>
 </head>
 <body>
   <main class="hero">
     <header>
+      <img class="brand-logo" src="assets/images/redgumer-logo.png" alt="Redgumer Dev">
       <nav class="languages" aria-label="Idioma">
         <button class="active" data-lang="es" type="button">ES</button>
         <button data-lang="ca" type="button">CA</button>
@@ -205,7 +368,7 @@
       <div class="copy">
         <div class="eyebrow" data-i18n="eyebrow">Tecnología · proyectos · aprendizaje</div>
         <h1>Xavier<br>Gómez</h1>
-        <p class="intro" data-i18n="intro">Mi camino ha pasado por la tecnología, el emprendimiento y siete años en Tailandia como profesional del buceo. Hoy estudio Ingeniería Informática en la URV y construyo nuevos proyectos digitales.</p>
+        <p class="intro" data-i18n="intro">De la tecnología al buceo profesional y de vuelta al código. Hoy estudio Ingeniería Informática en la URV y desarrollo proyectos digitales propios.</p>
         <div class="status" aria-label="Información destacada">
           <span data-i18n="pill1">Ingeniería Informática · URV</span>
           <span data-i18n="pill2">Proyectos propios</span>
@@ -214,30 +377,114 @@
       </div>
     </div>
 
-    <div class="scroll-note" data-i18n="scroll">Una historia en evolución</div>
+    <div class="scroll-note"><a href="#sobre-mi" data-i18n="scroll">Una historia en evolución ↓</a></div>
   </main>
+
+  <section class="about" id="sobre-mi">
+    <div class="about-inner">
+      <div class="about-top">
+        <div>
+          <div class="section-kicker" data-i18n="aboutKicker">Sobre mí</div>
+          <h2 data-i18n="aboutTitle">Un camino poco lineal.</h2>
+        </div>
+        <div class="about-copy">
+          <p class="lead" data-i18n="aboutLead">Siempre he estado cerca de la tecnología, aunque mi camino hasta la Ingeniería Informática ha pasado por muchos lugares antes de volver al código.</p>
+          <p data-i18n="aboutBody">Nací en Cambrils en 1981. Empecé entre diseño, redes y hardware, levanté una pequeña empresa tecnológica y más tarde cambié de escenario por completo. Viví siete años en Tailandia, donde convertí el buceo en mi profesión y llegué a formar a otros instructores. Una lesión de espalda cerró aquella etapa y abrió otra: hoy sigo estudiando, programando y construyendo proyectos propios.</p>
+        </div>
+      </div>
+
+      <div class="timeline-label">
+        <h3 data-i18n="timelineTitle">El recorrido, en pocas paradas</h3>
+        <span data-i18n="timelineHint">La historia continúa</span>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="time">1981</div>
+          <h4 data-i18n="t1Title">Cambrils</h4>
+          <p data-i18n="t1Body">Aquí empieza todo: curiosidad por la informática, el diseño y los videojuegos.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="time" data-i18n="t2Time">22–28 años</div>
+          <h4>DIIX</h4>
+          <p data-i18n="t2Body">Diseño, redes, hardware y una primera experiencia creando y gestionando una empresa propia.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="time" data-i18n="t3Time">7 años</div>
+          <h4 data-i18n="t3Title">Tailandia</h4>
+          <p data-i18n="t3Body">El buceo pasó de afición a profesión y terminó convirtiéndose en una etapa decisiva de mi vida.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="time">2017 · 2018</div>
+          <h4 data-i18n="t4Title">SSI Instructor Trainer</h4>
+          <p data-i18n="t4Body">Formación de instructores y reconocimiento como Instructor Trainer of the Year de SSI.</p>
+        </article>
+        <article class="timeline-item">
+          <div class="time" data-i18n="t5Time">Actualidad</div>
+          <h4 data-i18n="t5Title">Ingeniería Informática</h4>
+          <p data-i18n="t5Body">De vuelta a la tecnología: estudio en la URV y desarrollo nuevos proyectos digitales.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <script>
     const translations = {
       es: {
         eyebrow: 'Tecnología · proyectos · aprendizaje',
-        intro: 'Mi camino ha pasado por la tecnología, el emprendimiento y siete años en Tailandia como profesional del buceo. Hoy estudio Ingeniería Informática en la URV y construyo nuevos proyectos digitales.',
-        pill1: 'Ingeniería Informática · URV', pill2: 'Proyectos propios', pill3: 'Cambrils · Tarragona', scroll: 'Una historia en evolución'
+        intro: 'De la tecnología al buceo profesional y de vuelta al código. Hoy estudio Ingeniería Informática en la URV y desarrollo proyectos digitales propios.',
+        pill1: 'Ingeniería Informática · URV', pill2: 'Proyectos propios', pill3: 'Cambrils · Tarragona', scroll: 'Una historia en evolución ↓',
+        aboutKicker: 'Sobre mí', aboutTitle: 'Un camino poco lineal.',
+        aboutLead: 'Siempre he estado cerca de la tecnología, aunque mi camino hasta la Ingeniería Informática ha pasado por muchos lugares antes de volver al código.',
+        aboutBody: 'Nací en Cambrils en 1981. Empecé entre diseño, redes y hardware, levanté una pequeña empresa tecnológica y más tarde cambié de escenario por completo. Viví siete años en Tailandia, donde convertí el buceo en mi profesión y llegué a formar a otros instructores. Una lesión de espalda cerró aquella etapa y abrió otra: hoy sigo estudiando, programando y construyendo proyectos propios.',
+        timelineTitle: 'El recorrido, en pocas paradas', timelineHint: 'La historia continúa',
+        t1Title: 'Cambrils', t1Body: 'Aquí empieza todo: curiosidad por la informática, el diseño y los videojuegos.',
+        t2Time: '22–28 años', t2Body: 'Diseño, redes, hardware y una primera experiencia creando y gestionando una empresa propia.',
+        t3Time: '7 años', t3Title: 'Tailandia', t3Body: 'El buceo pasó de afición a profesión y terminó convirtiéndose en una etapa decisiva de mi vida.',
+        t4Title: 'SSI Instructor Trainer', t4Body: 'Formación de instructores y reconocimiento como Instructor Trainer of the Year de SSI.',
+        t5Time: 'Actualidad', t5Title: 'Ingeniería Informática', t5Body: 'De vuelta a la tecnología: estudio en la URV y desarrollo nuevos proyectos digitales.'
       },
       ca: {
         eyebrow: 'Tecnologia · projectes · aprenentatge',
-        intro: 'El meu camí ha passat per la tecnologia, l’emprenedoria i set anys a Tailàndia com a professional del busseig. Avui estudio Enginyeria Informàtica a la URV i construeixo nous projectes digitals.',
-        pill1: 'Enginyeria Informàtica · URV', pill2: 'Projectes propis', pill3: 'Cambrils · Tarragona', scroll: 'Una història en evolució'
+        intro: 'De la tecnologia al busseig professional i de tornada al codi. Avui estudio Enginyeria Informàtica a la URV i desenvolupo projectes digitals propis.',
+        pill1: 'Enginyeria Informàtica · URV', pill2: 'Projectes propis', pill3: 'Cambrils · Tarragona', scroll: 'Una història en evolució ↓',
+        aboutKicker: 'Sobre mi', aboutTitle: 'Un camí poc lineal.',
+        aboutLead: 'Sempre he estat a prop de la tecnologia, tot i que el meu camí fins a l’Enginyeria Informàtica ha passat per molts llocs abans de tornar al codi.',
+        aboutBody: 'Vaig néixer a Cambrils l’any 1981. Vaig començar entre disseny, xarxes i maquinari, vaig aixecar una petita empresa tecnològica i més tard vaig canviar completament d’escenari. Vaig viure set anys a Tailàndia, on vaig convertir el busseig en la meva professió i vaig arribar a formar altres instructors. Una lesió d’esquena va tancar aquella etapa i en va obrir una altra: avui continuo estudiant, programant i construint projectes propis.',
+        timelineTitle: 'El recorregut, en poques parades', timelineHint: 'La història continua',
+        t1Title: 'Cambrils', t1Body: 'Aquí comença tot: curiositat per la informàtica, el disseny i els videojocs.',
+        t2Time: '22–28 anys', t2Body: 'Disseny, xarxes, maquinari i una primera experiència creant i gestionant una empresa pròpia.',
+        t3Time: '7 anys', t3Title: 'Tailàndia', t3Body: 'El busseig va passar d’afició a professió i es va convertir en una etapa decisiva de la meva vida.',
+        t4Title: 'SSI Instructor Trainer', t4Body: 'Formació d’instructors i reconeixement com a Instructor Trainer of the Year de SSI.',
+        t5Time: 'Actualitat', t5Title: 'Enginyeria Informàtica', t5Body: 'De tornada a la tecnologia: estudio a la URV i desenvolupo nous projectes digitals.'
       },
       en: {
         eyebrow: 'Technology · projects · learning',
-        intro: 'My path has taken me through technology, entrepreneurship and seven years in Thailand as a diving professional. Today I study Computer Engineering at URV and build new digital projects.',
-        pill1: 'Computer Engineering · URV', pill2: 'Independent projects', pill3: 'Cambrils · Tarragona', scroll: 'A story still evolving'
+        intro: 'From technology to professional diving and back to code. Today I study Computer Engineering at URV and build independent digital projects.',
+        pill1: 'Computer Engineering · URV', pill2: 'Independent projects', pill3: 'Cambrils · Tarragona', scroll: 'A story still evolving ↓',
+        aboutKicker: 'About me', aboutTitle: 'A path that was never linear.',
+        aboutLead: 'Technology has always been close to me, although my route to Computer Engineering took me through many different places before returning to code.',
+        aboutBody: 'I was born in Cambrils in 1981. I started with design, networks and hardware, built a small technology business and later changed direction completely. I lived in Thailand for seven years, where diving became my profession and I eventually trained other instructors. A back injury closed that chapter and opened another one: today I keep studying, coding and building projects of my own.',
+        timelineTitle: 'The journey, in a few stops', timelineHint: 'The story continues',
+        t1Title: 'Cambrils', t1Body: 'This is where it starts: curiosity for computers, design and video games.',
+        t2Time: 'Age 22–28', t2Body: 'Design, networks, hardware and a first experience creating and running my own business.',
+        t3Time: '7 years', t3Title: 'Thailand', t3Body: 'Diving went from hobby to profession and became a defining chapter of my life.',
+        t4Title: 'SSI Instructor Trainer', t4Body: 'Training instructors and recognition as SSI Instructor Trainer of the Year.',
+        t5Time: 'Today', t5Title: 'Computer Engineering', t5Body: 'Back to technology: studying at URV and developing new digital projects.'
       },
       th: {
         eyebrow: 'เทคโนโลยี · โปรเจกต์ · การเรียนรู้',
-        intro: 'เส้นทางของผมผ่านทั้งเทคโนโลยี การทำธุรกิจ และเจ็ดปีในประเทศไทยในฐานะมืออาชีพด้านการดำน้ำ ปัจจุบันผมกำลังศึกษา Computer Engineering ที่ URV และพัฒนาโปรเจกต์ดิจิทัลใหม่ ๆ',
-        pill1: 'Computer Engineering · URV', pill2: 'โปรเจกต์ส่วนตัว', pill3: 'Cambrils · Tarragona', scroll: 'เรื่องราวที่ยังคงพัฒนา'
+        intro: 'จากเทคโนโลยีสู่การดำน้ำอาชีพ และกลับมาสู่การเขียนโค้ด ปัจจุบันผมเรียน Computer Engineering ที่ URV และพัฒนาโปรเจกต์ดิจิทัลของตัวเอง',
+        pill1: 'Computer Engineering · URV', pill2: 'โปรเจกต์ส่วนตัว', pill3: 'Cambrils · Tarragona', scroll: 'เรื่องราวที่ยังคงพัฒนา ↓',
+        aboutKicker: 'เกี่ยวกับผม', aboutTitle: 'เส้นทางที่ไม่เคยเป็นเส้นตรง',
+        aboutLead: 'เทคโนโลยีอยู่ใกล้ตัวผมมาตลอด แม้เส้นทางสู่ Computer Engineering จะพาผมไปผ่านหลายบทของชีวิตก่อนจะกลับมาสู่การเขียนโค้ดอีกครั้ง',
+        aboutBody: 'ผมเกิดที่ Cambrils ในปี 1981 เริ่มต้นจากงานออกแบบ ระบบเครือข่าย และฮาร์ดแวร์ เคยสร้างธุรกิจเทคโนโลยีขนาดเล็กของตัวเอง ก่อนจะเปลี่ยนเส้นทางชีวิตอย่างสิ้นเชิง ผมใช้ชีวิตในประเทศไทยเจ็ดปี ที่ซึ่งการดำน้ำกลายเป็นอาชีพและผมได้ฝึกอบรมครูสอนดำน้ำคนอื่น ๆ อาการบาดเจ็บที่หลังทำให้บทนั้นจบลงและเปิดบทใหม่ ปัจจุบันผมยังคงเรียน เขียนโปรแกรม และสร้างโปรเจกต์ของตัวเอง',
+        timelineTitle: 'เส้นทางของผมแบบย่อ', timelineHint: 'เรื่องราวยังดำเนินต่อ',
+        t1Title: 'Cambrils', t1Body: 'จุดเริ่มต้นของความสนใจด้านคอมพิวเตอร์ การออกแบบ และวิดีโอเกม',
+        t2Time: 'อายุ 22–28', t2Body: 'งานออกแบบ ระบบเครือข่าย ฮาร์ดแวร์ และประสบการณ์แรกในการสร้างและบริหารธุรกิจของตัวเอง',
+        t3Time: '7 ปี', t3Title: 'ประเทศไทย', t3Body: 'การดำน้ำเปลี่ยนจากงานอดิเรกเป็นอาชีพ และกลายเป็นช่วงเวลาสำคัญในชีวิตของผม',
+        t4Title: 'SSI Instructor Trainer', t4Body: 'ฝึกอบรมครูสอนดำน้ำและได้รับการยอมรับในฐานะ SSI Instructor Trainer of the Year',
+        t5Time: 'ปัจจุบัน', t5Title: 'Computer Engineering', t5Body: 'กลับมาสู่เทคโนโลยีอีกครั้ง เรียนที่ URV และพัฒนาโปรเจกต์ดิจิทัลใหม่ ๆ'
       }
     };
 
