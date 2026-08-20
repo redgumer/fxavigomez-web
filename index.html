@@ -4,598 +4,268 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Web personal de Xavier Gómez: trayectoria, tecnología y proyectos.">
+  <meta name="theme-color" content="#081019">
   <title>Xavier Gómez</title>
   <link rel="icon" type="image/png" href="assets/images/redgumer-logo.png">
   <style>
     :root {
-      --bg: #081019;
-      --text: #f5f7fa;
-      --muted: #b8c0ca;
-      --line: rgba(255,255,255,.16);
-      --accent: #f0a55a;
-      --paper: #f1f0ea;
-      --ink: #111a22;
-      --paper-muted: #59636c;
-      --paper-line: rgba(17,26,34,.14);
-      --deep: #0c2748;
-      --deep-2: #0a1e38;
+      --bg:#081019; --text:#f5f7fa; --muted:#b8c0ca; --line:rgba(255,255,255,.16);
+      --accent:#f0a55a; --paper:#f1f0ea; --ink:#111a22; --paper-muted:#59636c;
+      --paper-line:rgba(17,26,34,.14); --deep:#0c2748; --deep-2:#0a1e38;
+      --black:#070b10; --card:#101922;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      -webkit-user-select: none;
-      user-select: none;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;background:var(--bg);color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-user-select:none;user-select:none;
     }
+    input,textarea{-webkit-user-select:text;user-select:text}
+    a{color:inherit}
+    button,input,textarea{font:inherit}
 
-    input, textarea { -webkit-user-select: text; user-select: text; }
-
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: grid;
-      align-items: center;
-      overflow: hidden;
+    /* HERO */
+    .hero{
+      min-height:100vh;position:relative;display:grid;align-items:center;overflow:hidden;
       background-image:
-        linear-gradient(90deg, rgba(5,12,18,.97) 0%, rgba(5,12,18,.87) 30%, rgba(5,12,18,.30) 57%, rgba(5,12,18,.03) 82%),
-        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.20)),
+        linear-gradient(90deg,rgba(5,12,18,.97) 0%,rgba(5,12,18,.87) 30%,rgba(5,12,18,.30) 57%,rgba(5,12,18,.03) 82%),
+        linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.20)),
         url('assets/images/hero-xavier.png');
-      background-size: cover;
-      background-position: center center;
+      background-size:cover;background-position:center center;
     }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 24%;
-      background: linear-gradient(transparent, rgba(5,12,18,.76));
-      pointer-events: none;
+    .hero::after{content:"";position:absolute;inset:auto 0 0;height:24%;background:linear-gradient(transparent,rgba(5,12,18,.76));pointer-events:none}
+    header{
+      position:absolute;z-index:6;top:0;left:0;width:100%;display:grid;
+      grid-template-columns:auto 1fr auto;align-items:center;gap:30px;padding:24px clamp(24px,5vw,80px);
     }
+    .brand-logo{width:58px;height:58px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.22);box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:.94}
+    .top-nav{justify-self:center;display:flex;gap:26px}
+    .top-nav a{color:rgba(255,255,255,.72);font-size:.79rem;text-decoration:none;letter-spacing:.04em;transition:.2s ease}
+    .top-nav a:hover{color:#fff}
+    .languages{display:flex;gap:8px;padding:5px;border:1px solid var(--line);border-radius:999px;background:rgba(8,16,25,.34);backdrop-filter:blur(12px)}
+    .languages button{border:0;background:transparent;color:rgba(255,255,255,.68);font-size:.76rem;font-weight:700;letter-spacing:.08em;cursor:pointer;padding:7px 9px;border-radius:999px;transition:.2s ease}
+    .languages button:hover,.languages button.active{color:#fff;background:rgba(255,255,255,.12)}
+    .hero-content{position:relative;z-index:2;width:min(1200px,calc(100% - 48px));margin:0 auto;padding-top:92px}
+    .copy{max-width:650px}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-size:.82rem;font-weight:750;letter-spacing:.13em;text-transform:uppercase;margin-bottom:22px}
+    .eyebrow::before{content:"";width:32px;height:1px;background:currentColor}
+    .hero h1{font-size:clamp(3.4rem,7vw,7rem);line-height:.92;letter-spacing:-.055em;max-width:760px;margin-bottom:28px}
+    .intro{max-width:610px;color:var(--muted);font-size:clamp(1.05rem,1.7vw,1.35rem);line-height:1.66;text-wrap:balance}
+    .status{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+    .status span{border:1px solid var(--line);background:rgba(8,16,25,.34);backdrop-filter:blur(10px);padding:10px 14px;border-radius:999px;color:rgba(255,255,255,.82);font-size:.86rem}
+    .scroll-note{position:absolute;z-index:3;left:clamp(24px,5vw,80px);bottom:26px}
+    .scroll-note a{color:rgba(255,255,255,.56);font-size:.77rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:.2s ease}
+    .scroll-note a:hover{color:#fff}
 
-    header {
-      position: absolute;
-      z-index: 5;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px clamp(24px, 5vw, 80px);
+    /* COMMON */
+    .section-inner{width:min(1220px,100%);margin:0 auto}
+    .section-kicker{color:#8f5b28;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+    .section-title{font-size:clamp(3rem,6vw,6.3rem);line-height:.95;letter-spacing:-.055em}
+
+    /* ABOUT */
+    .about{background:var(--paper);color:var(--ink);padding:clamp(84px,10vw,150px) clamp(24px,6vw,96px)}
+    .about-top{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(48px,8vw,120px);align-items:start;margin-bottom:clamp(70px,9vw,120px)}
+    .about h2{max-width:560px}
+    .about-copy{padding-top:8px;max-width:720px}
+    .about-copy .lead{font-size:clamp(1.35rem,2.25vw,2rem);line-height:1.42;letter-spacing:-.025em;margin-bottom:28px;text-wrap:balance}
+    .about-copy p:last-child{color:var(--paper-muted);font-size:1.04rem;line-height:1.8;max-width:68ch}
+    .timeline-label{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:30px;padding-bottom:18px;border-bottom:1px solid var(--paper-line)}
+    .timeline-label h3{font-size:clamp(1.4rem,2vw,1.85rem);letter-spacing:-.025em}
+    .timeline-label span{color:var(--paper-muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.12em}
+    .timeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line)}
+    .timeline-item{min-height:250px;padding:26px 24px 30px;border-right:1px solid var(--paper-line);display:flex;flex-direction:column}
+    .timeline-item:last-child{border-right:0}
+    .timeline-item .time{color:#8f5b28;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:auto}
+    .timeline-item h4{font-size:1.25rem;line-height:1.2;letter-spacing:-.025em;margin:34px 0 12px}
+    .timeline-item p{color:var(--paper-muted);font-size:.92rem;line-height:1.65}
+
+    /* SSI */
+    .diving{position:relative;overflow:hidden;background:radial-gradient(circle at 78% 20%,rgba(62,133,204,.22),transparent 32%),linear-gradient(145deg,var(--deep),var(--deep-2));color:#fff;padding:clamp(88px,11vw,160px) clamp(24px,6vw,96px)}
+    .diving::before{content:"";position:absolute;width:540px;height:540px;border:1px solid rgba(255,255,255,.08);border-radius:50%;right:-210px;top:-220px}
+    .diving-head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(50px,8vw,120px);align-items:end;margin-bottom:clamp(70px,9vw,110px)}
+    .diving .section-kicker{color:#7fc2ff}.diving h2{max-width:680px}
+    .diving-copy{max-width:720px}.diving-copy .lead{font-size:clamp(1.35rem,2.2vw,2rem);line-height:1.42;letter-spacing:-.025em;margin-bottom:26px;text-wrap:balance}
+    .diving-copy p:last-child{color:rgba(255,255,255,.68);font-size:1.03rem;line-height:1.8}
+    .ssi-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.15);border-bottom:1px solid rgba(255,255,255,.15)}
+    .ssi-stat{min-height:230px;padding:30px;border-right:1px solid rgba(255,255,255,.15)}.ssi-stat:last-child{border-right:0}
+    .ssi-stat .number{display:block;color:#fff;font-size:clamp(2.2rem,4.2vw,4.7rem);line-height:1;letter-spacing:-.05em;margin-bottom:22px}
+    .ssi-stat strong{display:block;font-size:1.05rem;margin-bottom:10px}.ssi-stat p{color:rgba(255,255,255,.62);line-height:1.65;font-size:.92rem;max-width:30ch}
+    .career-close{display:flex;justify-content:flex-end;margin-top:42px}.career-close p{max-width:620px;color:rgba(255,255,255,.64);line-height:1.75;font-size:.98rem;border-left:2px solid #7fc2ff;padding-left:22px}
+    .archive-placeholder{margin-top:70px;border:1px dashed rgba(255,255,255,.18);border-radius:24px;padding:24px;color:rgba(255,255,255,.52);font-size:.88rem;text-align:center}
+
+    /* PRESENT / DEV */
+    .present{background:var(--black);color:#fff;padding:clamp(90px,11vw,160px) clamp(24px,6vw,96px)}
+    .present-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(50px,9vw,140px);align-items:center}
+    .dev-mark{display:grid;place-items:center;position:relative;min-height:420px}
+    .dev-mark::before{content:"";position:absolute;width:min(380px,80%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(240,165,90,.18),rgba(240,165,90,0) 68%)}
+    .dev-mark img{position:relative;width:min(340px,78%);border-radius:50%;box-shadow:0 30px 80px rgba(0,0,0,.42)}
+    .present-copy .section-kicker{color:var(--accent)}
+    .present-copy h2{max-width:760px;margin-bottom:30px}
+    .present-copy .lead{font-size:clamp(1.3rem,2.3vw,2rem);line-height:1.45;letter-spacing:-.025em;max-width:720px;margin-bottom:24px}
+    .present-copy .body{color:rgba(255,255,255,.62);font-size:1.02rem;line-height:1.8;max-width:70ch}
+
+    /* PROJECTS */
+    .projects{background:#e9e7df;color:var(--ink);padding:clamp(90px,11vw,160px) clamp(24px,6vw,96px)}
+    .projects-head{display:flex;align-items:end;justify-content:space-between;gap:50px;margin-bottom:56px}
+    .projects-head h2{max-width:720px}.projects-head p{max-width:440px;color:var(--paper-muted);line-height:1.7}
+    .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project-card{min-height:410px;background:#f6f5f0;border:1px solid rgba(17,26,34,.10);border-radius:22px;padding:30px;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
+    .project-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(17,26,34,.09)}
+    .project-meta{display:flex;justify-content:space-between;gap:16px;color:#8f5b28;font-size:.76rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+    .project-card h3{font-size:clamp(1.7rem,2.3vw,2.4rem);line-height:1.05;letter-spacing:-.04em;margin:50px 0 20px}
+    .project-card p{color:var(--paper-muted);line-height:1.75;font-size:.96rem}
+    .tags{margin-top:auto;padding-top:34px;display:flex;flex-wrap:wrap;gap:8px}.tags span{border:1px solid var(--paper-line);border-radius:999px;padding:7px 10px;font-size:.75rem;color:#4f5961}
+
+    /* SKILLS */
+    .skills{background:#fff;color:var(--ink);padding:clamp(90px,10vw,145px) clamp(24px,6vw,96px)}
+    .skills-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:end;margin-bottom:60px}.skills-head h2{max-width:640px}.skills-head p{color:var(--paper-muted);font-size:1.08rem;line-height:1.8;max-width:660px}
+    .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line)}
+    .skill{padding:34px 28px 38px;border-right:1px solid var(--paper-line)}.skill:last-child{border-right:0}
+    .skill .num{color:#8f5b28;font-size:.76rem;font-weight:800;letter-spacing:.1em;margin-bottom:50px}.skill h3{font-size:1.45rem;margin-bottom:14px}.skill p{color:var(--paper-muted);line-height:1.7;font-size:.94rem}
+
+    /* CONTACT */
+    .contact{background:linear-gradient(145deg,#101821,#081019);padding:clamp(90px,11vw,155px) clamp(24px,6vw,96px);color:#fff}
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(50px,9vw,140px);align-items:start}
+    .contact h2{max-width:650px;margin-bottom:28px}.contact-copy>p{color:rgba(255,255,255,.62);line-height:1.8;max-width:590px}
+    .socials{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+    .social-link{display:inline-flex;align-items:center;gap:10px;padding:11px 15px;border:1px solid rgba(255,255,255,.16);border-radius:999px;text-decoration:none;color:#fff;background:rgba(255,255,255,.04);transition:.2s ease}
+    .social-link:hover{background:rgba(255,255,255,.10);transform:translateY(-2px)}
+    .social-link svg{width:18px;height:18px;fill:currentColor}
+    .contact-form{border:1px solid rgba(255,255,255,.13);border-radius:24px;padding:clamp(24px,4vw,42px);background:rgba(255,255,255,.035)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{margin-bottom:16px}.field label{display:block;color:rgba(255,255,255,.72);font-size:.78rem;margin-bottom:8px;letter-spacing:.03em}
+    .field input,.field textarea{width:100%;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(4,9,14,.45);color:#fff;padding:14px 15px;outline:none;transition:.2s ease}.field input:focus,.field textarea:focus{border-color:rgba(240,165,90,.7)}
+    .field textarea{min-height:145px;resize:vertical}.form-footer{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:8px}.form-note{color:rgba(255,255,255,.42);font-size:.76rem;line-height:1.5;max-width:320px}
+    .submit-btn{border:0;border-radius:999px;background:var(--accent);color:#14181d;font-weight:800;padding:12px 20px;cursor:pointer;transition:.2s ease}.submit-btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+    .form-message{display:none;margin-top:16px;color:#ffd39d;font-size:.86rem;line-height:1.5}
+
+    footer{background:#05090d;color:rgba(255,255,255,.5);padding:26px clamp(24px,5vw,80px);display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:.78rem}
+    footer img{width:38px;height:38px;border-radius:50%}
+
+    @media(max-width:980px){
+      .top-nav{display:none}
+      .about-top,.diving-head,.present-grid,.skills-head,.contact-grid{grid-template-columns:1fr;gap:38px}
+      .timeline{grid-template-columns:1fr 1fr}.timeline-item{border-bottom:1px solid var(--paper-line)}.timeline-item:nth-child(2n){border-right:0}.timeline-item:last-child{border-bottom:0}
+      .ssi-stats{grid-template-columns:1fr}.ssi-stat{min-height:auto;border-right:0;border-bottom:1px solid rgba(255,255,255,.15)}.ssi-stat:last-child{border-bottom:0}
+      .project-grid{grid-template-columns:1fr 1fr}.project-card:last-child{grid-column:1/-1;min-height:330px}
+      .skill-grid{grid-template-columns:1fr}.skill{border-right:0;border-bottom:1px solid var(--paper-line)}.skill:last-child{border-bottom:0}
+      .dev-mark{min-height:330px}
     }
-
-    .brand-logo {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,.22);
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-      opacity: .94;
+    @media(max-width:820px){
+      .hero{align-items:end;background-position:68% center;background-image:linear-gradient(180deg,rgba(5,12,18,.10) 0%,rgba(5,12,18,.25) 38%,rgba(5,12,18,.93) 75%,#050c12 100%),url('assets/images/hero-xavier.png')}
+      header{padding:18px 20px}.brand-logo{width:48px;height:48px}.languages{gap:2px}.languages button{padding:6px 7px;font-size:.69rem}
+      .hero-content{width:100%;padding:0 22px 92px}.hero h1{font-size:clamp(3.2rem,15vw,5.4rem);margin-bottom:20px}.intro{font-size:1.02rem;line-height:1.62}.status{margin-top:24px}.status span{font-size:.78rem}.scroll-note{display:none}
+      .about,.diving,.present,.projects,.skills,.contact{padding:72px 22px 84px}.timeline-label{align-items:flex-start;flex-direction:column;gap:8px}.career-close{justify-content:flex-start}
+      .projects-head{align-items:flex-start;flex-direction:column;gap:22px}.project-grid{grid-template-columns:1fr}.project-card:last-child{grid-column:auto}.form-row{grid-template-columns:1fr}.form-footer{align-items:flex-start;flex-direction:column}
+      footer{align-items:flex-start;flex-direction:column}
     }
-
-    .languages {
-      display: flex;
-      gap: 8px;
-      padding: 5px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(8,16,25,.34);
-      backdrop-filter: blur(12px);
-    }
-
-    .languages button {
-      border: 0;
-      background: transparent;
-      color: rgba(255,255,255,.68);
-      font: inherit;
-      font-size: .76rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      cursor: pointer;
-      padding: 7px 9px;
-      border-radius: 999px;
-      transition: .2s ease;
-    }
-
-    .languages button:hover,
-    .languages button.active { color: #fff; background: rgba(255,255,255,.12); }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: min(1200px, calc(100% - 48px));
-      margin: 0 auto;
-      padding-top: 92px;
-    }
-
-    .copy { max-width: 650px; }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent);
-      font-size: .82rem;
-      font-weight: 750;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-      margin-bottom: 22px;
-    }
-
-    .eyebrow::before { content: ""; width: 32px; height: 1px; background: currentColor; }
-
-    .hero h1 {
-      font-size: clamp(3.4rem, 7vw, 7rem);
-      line-height: .92;
-      letter-spacing: -.055em;
-      max-width: 760px;
-      margin-bottom: 28px;
-    }
-
-    .intro {
-      max-width: 610px;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-      line-height: 1.66;
-      text-wrap: balance;
-    }
-
-    .status { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 10px; }
-    .status span {
-      border: 1px solid var(--line);
-      background: rgba(8,16,25,.34);
-      backdrop-filter: blur(10px);
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: rgba(255,255,255,.82);
-      font-size: .86rem;
-    }
-
-    .scroll-note { position: absolute; z-index: 3; left: clamp(24px, 5vw, 80px); bottom: 26px; }
-    .scroll-note a {
-      color: rgba(255,255,255,.56);
-      font-size: .77rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: color .2s ease;
-    }
-    .scroll-note a:hover { color: #fff; }
-
-    .about {
-      background: var(--paper);
-      color: var(--ink);
-      padding: clamp(84px, 10vw, 150px) clamp(24px, 6vw, 96px);
-    }
-
-    .about-inner, .diving-inner { width: min(1220px, 100%); margin: 0 auto; }
-
-    .about-top {
-      display: grid;
-      grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
-      gap: clamp(48px, 8vw, 120px);
-      align-items: start;
-      margin-bottom: clamp(70px, 9vw, 120px);
-    }
-
-    .section-kicker {
-      color: #8f5b28;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .about h2, .diving h2 {
-      font-size: clamp(3rem, 6vw, 6.3rem);
-      line-height: .95;
-      letter-spacing: -.055em;
-    }
-
-    .about h2 { max-width: 560px; }
-    .about-copy { padding-top: 8px; max-width: 720px; }
-    .about-copy .lead {
-      font-size: clamp(1.35rem, 2.25vw, 2rem);
-      line-height: 1.42;
-      letter-spacing: -.025em;
-      margin-bottom: 28px;
-      text-wrap: balance;
-    }
-
-    .about-copy p:last-child {
-      color: var(--paper-muted);
-      font-size: 1.04rem;
-      line-height: 1.8;
-      max-width: 68ch;
-    }
-
-    .timeline-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 30px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--paper-line);
-    }
-
-    .timeline-label h3 { font-size: clamp(1.4rem, 2vw, 1.85rem); letter-spacing: -.025em; }
-    .timeline-label span { color: var(--paper-muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      border-top: 1px solid var(--paper-line);
-      border-bottom: 1px solid var(--paper-line);
-    }
-
-    .timeline-item {
-      min-height: 250px;
-      padding: 26px 24px 30px;
-      border-right: 1px solid var(--paper-line);
-      display: flex;
-      flex-direction: column;
-    }
-    .timeline-item:last-child { border-right: 0; }
-    .timeline-item .time {
-      color: #8f5b28;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      margin-bottom: auto;
-    }
-    .timeline-item h4 { font-size: 1.25rem; line-height: 1.2; letter-spacing: -.025em; margin: 34px 0 12px; }
-    .timeline-item p { color: var(--paper-muted); font-size: .92rem; line-height: 1.65; }
-
-    .diving {
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 78% 20%, rgba(62,133,204,.22), transparent 32%),
-        linear-gradient(145deg, var(--deep), var(--deep-2));
-      color: #fff;
-      padding: clamp(88px, 11vw, 160px) clamp(24px, 6vw, 96px);
-    }
-
-    .diving::before {
-      content: "";
-      position: absolute;
-      width: 540px;
-      height: 540px;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 50%;
-      right: -210px;
-      top: -220px;
-    }
-
-    .diving-head {
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-      gap: clamp(50px, 8vw, 120px);
-      align-items: end;
-      margin-bottom: clamp(70px, 9vw, 110px);
-    }
-
-    .diving .section-kicker { color: #7fc2ff; }
-    .diving h2 { max-width: 680px; }
-    .diving-copy { max-width: 720px; }
-    .diving-copy .lead {
-      font-size: clamp(1.35rem, 2.2vw, 2rem);
-      line-height: 1.42;
-      letter-spacing: -.025em;
-      margin-bottom: 26px;
-      text-wrap: balance;
-    }
-    .diving-copy p:last-child { color: rgba(255,255,255,.68); font-size: 1.03rem; line-height: 1.8; }
-
-    .ssi-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid rgba(255,255,255,.15);
-      border-bottom: 1px solid rgba(255,255,255,.15);
-    }
-
-    .ssi-stat { min-height: 230px; padding: 30px; border-right: 1px solid rgba(255,255,255,.15); }
-    .ssi-stat:last-child { border-right: 0; }
-    .ssi-stat .number {
-      display: block;
-      color: #fff;
-      font-size: clamp(2.2rem, 4.2vw, 4.7rem);
-      line-height: 1;
-      letter-spacing: -.05em;
-      margin-bottom: 22px;
-    }
-    .ssi-stat strong { display: block; font-size: 1.05rem; margin-bottom: 10px; }
-    .ssi-stat p { color: rgba(255,255,255,.62); line-height: 1.65; font-size: .92rem; max-width: 30ch; }
-
-    .career-close {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 42px;
-    }
-    .career-close p {
-      max-width: 620px;
-      color: rgba(255,255,255,.64);
-      line-height: 1.75;
-      font-size: .98rem;
-      border-left: 2px solid #7fc2ff;
-      padding-left: 22px;
-    }
-
-    @media (max-width: 920px) {
-      .about-top, .diving-head { grid-template-columns: 1fr; gap: 34px; }
-      .about h2, .diving h2 { max-width: 100%; }
-      .timeline { grid-template-columns: 1fr 1fr; }
-      .timeline-item { border-bottom: 1px solid var(--paper-line); }
-      .timeline-item:nth-child(2n) { border-right: 0; }
-      .timeline-item:last-child { border-bottom: 0; }
-      .ssi-stats { grid-template-columns: 1fr; }
-      .ssi-stat { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.15); }
-      .ssi-stat:last-child { border-bottom: 0; }
-    }
-
-    @media (max-width: 820px) {
-      .hero {
-        align-items: end;
-        background-position: 68% center;
-        background-image:
-          linear-gradient(180deg, rgba(5,12,18,.10) 0%, rgba(5,12,18,.25) 38%, rgba(5,12,18,.93) 75%, #050c12 100%),
-          url('assets/images/hero-xavier.png');
-      }
-      header { padding: 18px 20px; }
-      .brand-logo { width: 48px; height: 48px; }
-      .languages { gap: 2px; }
-      .languages button { padding: 6px 7px; font-size: .69rem; }
-      .hero-content { width: 100%; padding: 0 22px 92px; }
-      .copy { max-width: 100%; }
-      .hero h1 { font-size: clamp(3.2rem, 15vw, 5.4rem); margin-bottom: 20px; }
-      .intro { font-size: 1.02rem; line-height: 1.62; max-width: 36rem; }
-      .status { margin-top: 24px; }
-      .status span { font-size: .78rem; }
-      .scroll-note { display: none; }
-      .about, .diving { padding: 72px 22px 84px; }
-      .timeline-label { align-items: flex-start; flex-direction: column; gap: 8px; }
-      .career-close { justify-content: flex-start; }
-    }
-
-    @media (max-width: 620px) {
-      .timeline { grid-template-columns: 1fr; }
-      .timeline-item, .timeline-item:nth-child(2n) {
-        min-height: auto;
-        border-right: 0;
-        border-bottom: 1px solid var(--paper-line);
-      }
-      .timeline-item .time { margin-bottom: 24px; }
-      .timeline-item h4 { margin-top: 0; }
+    @media(max-width:620px){
+      .timeline{grid-template-columns:1fr}.timeline-item,.timeline-item:nth-child(2n){min-height:auto;border-right:0;border-bottom:1px solid var(--paper-line)}.timeline-item .time{margin-bottom:24px}.timeline-item h4{margin-top:0}
     }
   </style>
 </head>
 <body>
-  <main class="hero">
+  <main class="hero" id="inicio">
     <header>
-      <img class="brand-logo" src="assets/images/redgumer-logo.png" alt="Redgumer Dev">
+      <a href="#inicio" aria-label="Inicio"><img class="brand-logo" src="assets/images/redgumer-logo.png" alt="Redgumer Dev"></a>
+      <nav class="top-nav" aria-label="Navegación principal">
+        <a href="#sobre-mi" data-i18n="navAbout">Sobre mí</a>
+        <a href="#proyectos" data-i18n="navProjects">Proyectos</a>
+        <a href="#tecnologia" data-i18n="navTech">Tecnología</a>
+        <a href="#contacto" data-i18n="navContact">Contacto</a>
+      </nav>
       <nav class="languages" aria-label="Idioma">
-        <button class="active" data-lang="es" type="button">ES</button>
-        <button data-lang="ca" type="button">CA</button>
-        <button data-lang="en" type="button">EN</button>
-        <button data-lang="th" type="button">TH</button>
+        <button class="active" data-lang="es" type="button">ES</button><button data-lang="ca" type="button">CA</button><button data-lang="en" type="button">EN</button><button data-lang="th" type="button">TH</button>
       </nav>
     </header>
-
-    <div class="hero-content">
-      <div class="copy">
-        <div class="eyebrow" data-i18n="eyebrow">Tecnología · proyectos · aprendizaje</div>
-        <h1>Xavier<br>Gómez</h1>
-        <p class="intro" data-i18n="intro">De la tecnología al buceo profesional y de vuelta al código. Hoy estudio Ingeniería Informática en la URV y desarrollo proyectos digitales propios.</p>
-        <div class="status" aria-label="Información destacada">
-          <span data-i18n="pill1">Ingeniería Informática · URV</span>
-          <span data-i18n="pill2">Proyectos propios</span>
-          <span data-i18n="pill3">Cambrils · Tarragona</span>
-        </div>
-      </div>
-    </div>
-
+    <div class="hero-content"><div class="copy">
+      <div class="eyebrow" data-i18n="eyebrow">Tecnología · proyectos · aprendizaje</div>
+      <h1>Xavier<br>Gómez</h1>
+      <p class="intro" data-i18n="intro">De la tecnología al buceo profesional y de vuelta al código. Hoy estudio Ingeniería Informática en la URV y desarrollo proyectos digitales propios.</p>
+      <div class="status"><span data-i18n="pill1">Ingeniería Informática · URV</span><span data-i18n="pill2">Proyectos propios</span><span data-i18n="pill3">Cambrils · Tarragona</span></div>
+    </div></div>
     <div class="scroll-note"><a href="#sobre-mi" data-i18n="scroll">Una historia en evolución ↓</a></div>
   </main>
 
-  <section class="about" id="sobre-mi">
-    <div class="about-inner">
-      <div class="about-top">
-        <div>
-          <div class="section-kicker" data-i18n="aboutKicker">Sobre mí</div>
-          <h2 data-i18n="aboutTitle">Un camino poco lineal.</h2>
-        </div>
-        <div class="about-copy">
-          <p class="lead" data-i18n="aboutLead">Siempre he estado cerca de la tecnología, aunque mi camino hasta la Ingeniería Informática ha pasado por muchos lugares antes de volver al código.</p>
-          <p data-i18n="aboutBody">Nací en Cambrils en 1981. Empecé entre diseño, redes y hardware, levanté una pequeña empresa tecnológica y más tarde cambié de escenario por completo. Viví siete años en Tailandia, donde convertí el buceo en mi profesión y llegué a formar a otros instructores. Una lesión de espalda cerró aquella etapa y abrió otra: hoy sigo estudiando, programando y construyendo proyectos propios.</p>
-        </div>
-      </div>
+  <section class="about" id="sobre-mi"><div class="section-inner">
+    <div class="about-top"><div><div class="section-kicker" data-i18n="aboutKicker">Sobre mí</div><h2 class="section-title" data-i18n="aboutTitle">Un camino poco lineal.</h2></div>
+    <div class="about-copy"><p class="lead" data-i18n="aboutLead">Siempre he estado cerca de la tecnología, aunque mi camino hasta la Ingeniería Informática ha pasado por muchos lugares antes de volver al código.</p><p data-i18n="aboutBody">Nací en Cambrils en 1981. Empecé entre diseño, redes y hardware, levanté una pequeña empresa tecnológica y más tarde cambié de escenario por completo. Viví siete años en Tailandia, donde convertí el buceo en mi profesión y llegué a formar a otros instructores. Una lesión de espalda cerró aquella etapa y abrió otra: hoy sigo estudiando, programando y construyendo proyectos propios.</p></div></div>
+    <div class="timeline-label"><h3 data-i18n="timelineTitle">El recorrido, en pocas paradas</h3><span data-i18n="timelineHint">La historia continúa</span></div>
+    <div class="timeline">
+      <article class="timeline-item"><div class="time">1981</div><h4 data-i18n="t1Title">Cambrils</h4><p data-i18n="t1Body">Aquí empieza todo: curiosidad por la informática, el diseño y los videojuegos.</p></article>
+      <article class="timeline-item"><div class="time" data-i18n="t2Time">22–28 años</div><h4>DIIX</h4><p data-i18n="t2Body">Diseño, redes, hardware y una primera experiencia creando y gestionando una empresa propia.</p></article>
+      <article class="timeline-item"><div class="time" data-i18n="t3Time">7 años</div><h4 data-i18n="t3Title">Tailandia</h4><p data-i18n="t3Body">El buceo pasó de afición a profesión y terminó convirtiéndose en una etapa decisiva de mi vida.</p></article>
+      <article class="timeline-item"><div class="time">2016–2024</div><h4>SSI Instructor Trainer</h4><p data-i18n="t4Body">Ocho años formando profesionales. Instructor Trainer of the Year en 2017 y 2018.</p></article>
+      <article class="timeline-item"><div class="time" data-i18n="t5Time">Actualidad</div><h4 data-i18n="t5Title">Ingeniería Informática</h4><p data-i18n="t5Body">De vuelta a la tecnología: estudio en la URV y desarrollo nuevos proyectos digitales.</p></article>
+    </div>
+  </div></section>
 
-      <div class="timeline-label">
-        <h3 data-i18n="timelineTitle">El recorrido, en pocas paradas</h3>
-        <span data-i18n="timelineHint">La historia continúa</span>
-      </div>
+  <section class="diving" id="ssi"><div class="section-inner">
+    <div class="diving-head"><div><div class="section-kicker" data-i18n="divingKicker">Tailandia · SSI</div><h2 class="section-title" data-i18n="divingTitle">De instructor a formar instructores.</h2></div>
+    <div class="diving-copy"><p class="lead" data-i18n="divingLead">El buceo empezó como una forma de aprender algo nuevo y acabó convirtiéndose en una carrera profesional.</p><p data-i18n="divingBody">En septiembre de 2016 alcancé el nivel de SSI Instructor Trainer. Durante los años siguientes pasé a formar a instructores para que ellos pudieran enseñar a otros. Ese recorrido recibió el reconocimiento de SSI con el premio Instructor Trainer of the Year dos años consecutivos, en 2017 y 2018.</p></div></div>
+    <div class="ssi-stats">
+      <article class="ssi-stat"><span class="number" data-i18n="ssiStat1Number">7 años</span><strong data-i18n="ssiStat1Title">Viviendo en Tailandia</strong><p data-i18n="ssiStat1Body">Una etapa personal y profesional que terminó marcando gran parte de mi trayectoria.</p></article>
+      <article class="ssi-stat"><span class="number">2016–2024</span><strong>SSI Instructor Trainer</strong><p data-i18n="ssiStat2Body">Formación de profesionales e instructores dentro del sistema SSI.</p></article>
+      <article class="ssi-stat"><span class="number">2017 · 2018</span><strong>Instructor Trainer of the Year</strong><p data-i18n="ssiStat3Body">Reconocimiento de SSI recibido durante dos años consecutivos.</p></article>
+    </div>
+    <div class="career-close"><p data-i18n="careerClose">Una lesión de espalda terminó cerrando mi etapa profesional en el buceo. Fue el momento de cambiar de dirección y recuperar una parte de mí que siempre había estado ahí: la tecnología.</p></div>
+    <div class="archive-placeholder" data-i18n="archiveNote">Aquí incorporaremos el archivo visual de esta etapa: formación de instructores, buceo y el diploma SSI de 2018.</div>
+  </div></section>
 
-      <div class="timeline">
-        <article class="timeline-item">
-          <div class="time">1981</div>
-          <h4 data-i18n="t1Title">Cambrils</h4>
-          <p data-i18n="t1Body">Aquí empieza todo: curiosidad por la informática, el diseño y los videojuegos.</p>
-        </article>
-        <article class="timeline-item">
-          <div class="time" data-i18n="t2Time">22–28 años</div>
-          <h4>DIIX</h4>
-          <p data-i18n="t2Body">Diseño, redes, hardware y una primera experiencia creando y gestionando una empresa propia.</p>
-        </article>
-        <article class="timeline-item">
-          <div class="time" data-i18n="t3Time">7 años</div>
-          <h4 data-i18n="t3Title">Tailandia</h4>
-          <p data-i18n="t3Body">El buceo pasó de afición a profesión y terminó convirtiéndose en una etapa decisiva de mi vida.</p>
-        </article>
-        <article class="timeline-item">
-          <div class="time">2016–2024</div>
-          <h4 data-i18n="t4Title">SSI Instructor Trainer</h4>
-          <p data-i18n="t4Body">Ocho años formando profesionales. Instructor Trainer of the Year en 2017 y 2018.</p>
-        </article>
-        <article class="timeline-item">
-          <div class="time" data-i18n="t5Time">Actualidad</div>
-          <h4 data-i18n="t5Title">Ingeniería Informática</h4>
-          <p data-i18n="t5Body">De vuelta a la tecnología: estudio en la URV y desarrollo nuevos proyectos digitales.</p>
-        </article>
+  <section class="present" id="presente"><div class="section-inner present-grid">
+    <div class="dev-mark"><img src="assets/images/redgumer-logo.png" alt="Redgumer Dev"></div>
+    <div class="present-copy"><div class="section-kicker" data-i18n="presentKicker">El presente</div><h2 class="section-title" data-i18n="presentTitle">Volver al código, pero con otra perspectiva.</h2><p class="lead" data-i18n="presentLead">La tecnología no es una etapa nueva: es el hilo que ha ido apareciendo una y otra vez a lo largo de mi vida.</p><p class="body" data-i18n="presentBody">Actualmente curso Ingeniería Informática en la Universitat Rovira i Virgili y dedico buena parte de mi aprendizaje a construir cosas reales. Me interesa especialmente transformar problemas concretos en herramientas útiles, aprender nuevas plataformas y seguir ampliando mi forma de desarrollar software.</p></div>
+  </div></section>
+
+  <section class="projects" id="proyectos"><div class="section-inner">
+    <div class="projects-head"><div><div class="section-kicker" data-i18n="projectsKicker">Proyectos</div><h2 class="section-title" data-i18n="projectsTitle">Aprender construyendo.</h2></div><p data-i18n="projectsIntro">Este espacio irá creciendo con los proyectos en los que vaya trabajando. No es una lista cerrada: es una fotografía de lo que estoy construyendo ahora.</p></div>
+    <div class="project-grid">
+      <article class="project-card"><div class="project-meta"><span data-i18n="statusActive">En desarrollo</span><span>Android</span></div><h3>Asistente Taxista Salou</h3><p data-i18n="taxiBody">Aplicación Android orientada a simplificar tareas y consultas del trabajo diario del taxi, con información local, utilidades y experimentación con Android Auto.</p><div class="tags"><span>Kotlin</span><span>Android</span><span>Android Auto</span><span>GPS</span></div></article>
+      <article class="project-card"><div class="project-meta"><span data-i18n="statusConcept">En desarrollo</span><span>Mobile</span></div><h3>DiveMap</h3><p data-i18n="diveMapBody">Un proyecto para explorar puntos de buceo de todo el mundo con información útil y una representación visual del fondo que ayude a entender cada inmersión antes de entrar al agua.</p><div class="tags"><span>Maps</span><span>UX</span><span>AI</span><span data-i18n="communityTag">Comunidad</span></div></article>
+      <article class="project-card"><div class="project-meta"><span data-i18n="statusLive">Online</span><span>Web</span></div><h3>fxavigomez.es</h3><p data-i18n="webBody">Esta propia web: un espacio personal, portfolio y archivo de trayectoria construido con una arquitectura sencilla, rápida y de coste mínimo.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Cloudflare</span></div></article>
+    </div>
+  </div></section>
+
+  <section class="skills" id="tecnologia"><div class="section-inner">
+    <div class="skills-head"><div><div class="section-kicker" data-i18n="skillsKicker">Tecnología</div><h2 class="section-title" data-i18n="skillsTitle">Herramientas que voy convirtiendo en oficio.</h2></div><p data-i18n="skillsIntro">No me interesa presentar una lista infinita de tecnologías. Prefiero mostrar las áreas en las que estoy trabajando de verdad y seguir actualizándolas conforme avance.</p></div>
+    <div class="skill-grid">
+      <article class="skill"><div class="num">01</div><h3>Android · Kotlin</h3><p data-i18n="skill1">Desarrollo de aplicaciones Android, interfaces móviles, persistencia de datos, geolocalización e integración con Android Auto.</p></article>
+      <article class="skill"><div class="num">02</div><h3>Web · Git</h3><p data-i18n="skill2">HTML, CSS, JavaScript, control de versiones y despliegues automáticos. Esta web forma parte del aprendizaje.</p></article>
+      <article class="skill"><div class="num">03</div><h3 data-i18n="skill3Title">Siguiente etapa · Apple</h3><p data-i18n="skill3">Ampliando el entorno de desarrollo hacia macOS e iOS para poder construir y publicar también dentro del ecosistema Apple.</p></article>
+    </div>
+  </div></section>
+
+  <section class="contact" id="contacto"><div class="section-inner contact-grid">
+    <div class="contact-copy"><div class="section-kicker" data-i18n="contactKicker">Contacto</div><h2 class="section-title" data-i18n="contactTitle">Si quieres hablar, aquí me encuentras.</h2><p data-i18n="contactBody">Para proyectos, tecnología o cualquier propuesta que tenga sentido. El formulario enviará el mensaje de forma privada sin publicar mi dirección de correo.</p>
+      <div class="socials">
+        <a class="social-link" href="https://www.instagram.com/fxavigomez/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.75 6a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 17.75 6Z"/></svg><span>Instagram</span></a>
+        <a class="social-link" href="https://www.youtube.com/c/XaviGomezC" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.6-.46-5.33a3 3 0 0 0-2.11-2.11C18.7 4.1 12 4.1 12 4.1s-6.7 0-8.43.46A3 3 0 0 0 1.46 6.67C1 8.4 1 12 1 12s0 3.6.46 5.33a3 3 0 0 0 2.11 2.11c1.73.46 8.43.46 8.43.46s6.7 0 8.43-.46a3 3 0 0 0 2.11-2.11C23 15.6 23 12 23 12ZM9.8 15.5v-7l6 3.5-6 3.5Z"/></svg><span>YouTube</span></a>
       </div>
     </div>
-  </section>
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="form-row"><div class="field"><label for="name" data-i18n="formName">Nombre</label><input id="name" name="name" required autocomplete="name"></div><div class="field"><label for="email" data-i18n="formEmail">Correo</label><input id="email" name="email" type="email" required autocomplete="email"></div></div>
+      <div class="field"><label for="subject" data-i18n="formSubject">Asunto</label><input id="subject" name="subject" required></div>
+      <div class="field"><label for="message" data-i18n="formMessage">Mensaje</label><textarea id="message" name="message" required></textarea></div>
+      <div class="form-footer"><p class="form-note" data-i18n="formNote">El correo no se mostrará públicamente. En el siguiente paso activaremos protección Cloudflare Turnstile y el envío privado.</p><button class="submit-btn" type="submit" data-i18n="formButton">Enviar mensaje</button></div>
+      <p class="form-message" id="formMessage" data-i18n="formPending">El formulario está preparado visualmente; falta conectar la protección anti-spam y el servicio de envío.</p>
+    </form>
+  </div></section>
 
-  <section class="diving" id="ssi">
-    <div class="diving-inner">
-      <div class="diving-head">
-        <div>
-          <div class="section-kicker" data-i18n="divingKicker">Tailandia · SSI</div>
-          <h2 data-i18n="divingTitle">De instructor a formar instructores.</h2>
-        </div>
-        <div class="diving-copy">
-          <p class="lead" data-i18n="divingLead">El buceo empezó como una forma de aprender algo nuevo y acabó convirtiéndose en una carrera profesional.</p>
-          <p data-i18n="divingBody">En septiembre de 2016 alcancé el nivel de SSI Instructor Trainer. Durante los años siguientes mi trabajo dejó de centrarse únicamente en enseñar a bucear: pasé a formar a instructores para que ellos pudieran enseñar a otros. Ese recorrido recibió el reconocimiento de SSI con el premio Instructor Trainer of the Year dos años consecutivos, en 2017 y 2018.</p>
-        </div>
-      </div>
-
-      <div class="ssi-stats">
-        <article class="ssi-stat">
-          <span class="number" data-i18n="ssiStat1Number">7 años</span>
-          <strong data-i18n="ssiStat1Title">Viviendo en Tailandia</strong>
-          <p data-i18n="ssiStat1Body">Una etapa personal y profesional que terminó marcando gran parte de mi trayectoria.</p>
-        </article>
-        <article class="ssi-stat">
-          <span class="number">2016–2024</span>
-          <strong data-i18n="ssiStat2Title">SSI Instructor Trainer</strong>
-          <p data-i18n="ssiStat2Body">Formación de profesionales e instructores dentro del sistema SSI.</p>
-        </article>
-        <article class="ssi-stat">
-          <span class="number">2017 · 2018</span>
-          <strong data-i18n="ssiStat3Title">Instructor Trainer of the Year</strong>
-          <p data-i18n="ssiStat3Body">Reconocimiento de SSI recibido durante dos años consecutivos.</p>
-        </article>
-      </div>
-
-      <div class="career-close">
-        <p data-i18n="careerClose">Una lesión de espalda terminó cerrando mi etapa profesional en el buceo. Sin dramatismos: fue el momento de cambiar de dirección y recuperar una parte de mí que siempre había estado ahí, la tecnología.</p>
-      </div>
-    </div>
-  </section>
+  <footer><div>© 2026 Xavier Gómez · fxavigomez.es</div><img src="assets/images/redgumer-logo.png" alt="Redgumer Dev"></footer>
 
   <script>
-    const translations = {
-      es: {
-        eyebrow: 'Tecnología · proyectos · aprendizaje',
-        intro: 'De la tecnología al buceo profesional y de vuelta al código. Hoy estudio Ingeniería Informática en la URV y desarrollo proyectos digitales propios.',
-        pill1: 'Ingeniería Informática · URV', pill2: 'Proyectos propios', pill3: 'Cambrils · Tarragona', scroll: 'Una historia en evolución ↓',
-        aboutKicker: 'Sobre mí', aboutTitle: 'Un camino poco lineal.',
-        aboutLead: 'Siempre he estado cerca de la tecnología, aunque mi camino hasta la Ingeniería Informática ha pasado por muchos lugares antes de volver al código.',
-        aboutBody: 'Nací en Cambrils en 1981. Empecé entre diseño, redes y hardware, levanté una pequeña empresa tecnológica y más tarde cambié de escenario por completo. Viví siete años en Tailandia, donde convertí el buceo en mi profesión y llegué a formar a otros instructores. Una lesión de espalda cerró aquella etapa y abrió otra: hoy sigo estudiando, programando y construyendo proyectos propios.',
-        timelineTitle: 'El recorrido, en pocas paradas', timelineHint: 'La historia continúa',
-        t1Title: 'Cambrils', t1Body: 'Aquí empieza todo: curiosidad por la informática, el diseño y los videojuegos.',
-        t2Time: '22–28 años', t2Body: 'Diseño, redes, hardware y una primera experiencia creando y gestionando una empresa propia.',
-        t3Time: '7 años', t3Title: 'Tailandia', t3Body: 'El buceo pasó de afición a profesión y terminó convirtiéndose en una etapa decisiva de mi vida.',
-        t4Title: 'SSI Instructor Trainer', t4Body: 'Ocho años formando profesionales. Instructor Trainer of the Year en 2017 y 2018.',
-        t5Time: 'Actualidad', t5Title: 'Ingeniería Informática', t5Body: 'De vuelta a la tecnología: estudio en la URV y desarrollo nuevos proyectos digitales.',
-        divingKicker: 'Tailandia · SSI', divingTitle: 'De instructor a formar instructores.',
-        divingLead: 'El buceo empezó como una forma de aprender algo nuevo y acabó convirtiéndose en una carrera profesional.',
-        divingBody: 'En septiembre de 2016 alcancé el nivel de SSI Instructor Trainer. Durante los años siguientes mi trabajo dejó de centrarse únicamente en enseñar a bucear: pasé a formar a instructores para que ellos pudieran enseñar a otros. Ese recorrido recibió el reconocimiento de SSI con el premio Instructor Trainer of the Year dos años consecutivos, en 2017 y 2018.',
-        ssiStat1Number: '7 años', ssiStat1Title: 'Viviendo en Tailandia', ssiStat1Body: 'Una etapa personal y profesional que terminó marcando gran parte de mi trayectoria.',
-        ssiStat2Title: 'SSI Instructor Trainer', ssiStat2Body: 'Formación de profesionales e instructores dentro del sistema SSI.',
-        ssiStat3Title: 'Instructor Trainer of the Year', ssiStat3Body: 'Reconocimiento de SSI recibido durante dos años consecutivos.',
-        careerClose: 'Una lesión de espalda terminó cerrando mi etapa profesional en el buceo. Sin dramatismos: fue el momento de cambiar de dirección y recuperar una parte de mí que siempre había estado ahí, la tecnología.'
-      },
-      ca: {
-        eyebrow: 'Tecnologia · projectes · aprenentatge',
-        intro: 'De la tecnologia al busseig professional i de tornada al codi. Avui estudio Enginyeria Informàtica a la URV i desenvolupo projectes digitals propis.',
-        pill1: 'Enginyeria Informàtica · URV', pill2: 'Projectes propis', pill3: 'Cambrils · Tarragona', scroll: 'Una història en evolució ↓',
-        aboutKicker: 'Sobre mi', aboutTitle: 'Un camí poc lineal.',
-        aboutLead: 'Sempre he estat a prop de la tecnologia, tot i que el meu camí fins a l’Enginyeria Informàtica ha passat per molts llocs abans de tornar al codi.',
-        aboutBody: 'Vaig néixer a Cambrils l’any 1981. Vaig començar entre disseny, xarxes i maquinari, vaig aixecar una petita empresa tecnològica i més tard vaig canviar completament d’escenari. Vaig viure set anys a Tailàndia, on vaig convertir el busseig en la meva professió i vaig arribar a formar altres instructors. Una lesió d’esquena va tancar aquella etapa i en va obrir una altra: avui continuo estudiant, programant i construint projectes propis.',
-        timelineTitle: 'El recorregut, en poques parades', timelineHint: 'La història continua',
-        t1Title: 'Cambrils', t1Body: 'Aquí comença tot: curiositat per la informàtica, el disseny i els videojocs.',
-        t2Time: '22–28 anys', t2Body: 'Disseny, xarxes, maquinari i una primera experiència creant i gestionant una empresa pròpia.',
-        t3Time: '7 anys', t3Title: 'Tailàndia', t3Body: 'El busseig va passar d’afició a professió i es va convertir en una etapa decisiva de la meva vida.',
-        t4Title: 'SSI Instructor Trainer', t4Body: 'Vuit anys formant professionals. Instructor Trainer of the Year el 2017 i el 2018.',
-        t5Time: 'Actualitat', t5Title: 'Enginyeria Informàtica', t5Body: 'De tornada a la tecnologia: estudio a la URV i desenvolupo nous projectes digitals.',
-        divingKicker: 'Tailàndia · SSI', divingTitle: 'D’instructor a formar instructors.',
-        divingLead: 'El busseig va començar com una manera d’aprendre alguna cosa nova i va acabar convertint-se en una carrera professional.',
-        divingBody: 'El setembre de 2016 vaig assolir el nivell de SSI Instructor Trainer. Durant els anys següents la meva feina va deixar de centrar-se únicament a ensenyar a bussejar: vaig passar a formar instructors perquè ells poguessin ensenyar altres persones. Aquest recorregut va rebre el reconeixement de SSI amb el premi Instructor Trainer of the Year dos anys consecutius, el 2017 i el 2018.',
-        ssiStat1Number: '7 anys', ssiStat1Title: 'Vivint a Tailàndia', ssiStat1Body: 'Una etapa personal i professional que va acabar marcant gran part de la meva trajectòria.',
-        ssiStat2Title: 'SSI Instructor Trainer', ssiStat2Body: 'Formació de professionals i instructors dins del sistema SSI.',
-        ssiStat3Title: 'Instructor Trainer of the Year', ssiStat3Body: 'Reconeixement de SSI rebut durant dos anys consecutius.',
-        careerClose: 'Una lesió d’esquena va acabar tancant la meva etapa professional en el busseig. Sense dramatismes: era el moment de canviar de direcció i recuperar una part de mi que sempre havia estat allà, la tecnologia.'
-      },
-      en: {
-        eyebrow: 'Technology · projects · learning',
-        intro: 'From technology to professional diving and back to code. Today I study Computer Engineering at URV and build independent digital projects.',
-        pill1: 'Computer Engineering · URV', pill2: 'Independent projects', pill3: 'Cambrils · Tarragona', scroll: 'A story still evolving ↓',
-        aboutKicker: 'About me', aboutTitle: 'A path that was never linear.',
-        aboutLead: 'Technology has always been close to me, although my route to Computer Engineering took me through many different places before returning to code.',
-        aboutBody: 'I was born in Cambrils in 1981. I started with design, networks and hardware, built a small technology business and later changed direction completely. I lived in Thailand for seven years, where diving became my profession and I eventually trained other instructors. A back injury closed that chapter and opened another one: today I keep studying, coding and building projects of my own.',
-        timelineTitle: 'The journey, in a few stops', timelineHint: 'The story continues',
-        t1Title: 'Cambrils', t1Body: 'This is where it starts: curiosity for computers, design and video games.',
-        t2Time: 'Age 22–28', t2Body: 'Design, networks, hardware and a first experience creating and running my own business.',
-        t3Time: '7 years', t3Title: 'Thailand', t3Body: 'Diving went from hobby to profession and became a defining chapter of my life.',
-        t4Title: 'SSI Instructor Trainer', t4Body: 'Eight years training professionals. Instructor Trainer of the Year in 2017 and 2018.',
-        t5Time: 'Today', t5Title: 'Computer Engineering', t5Body: 'Back to technology: studying at URV and developing new digital projects.',
-        divingKicker: 'Thailand · SSI', divingTitle: 'From instructor to training instructors.',
-        divingLead: 'Diving started as a way to learn something new and eventually became a professional career.',
-        divingBody: 'In September 2016 I reached SSI Instructor Trainer level. Over the following years my work was no longer only about teaching people to dive: I began training instructors so they could teach others. That journey was recognised by SSI with the Instructor Trainer of the Year award in two consecutive years, 2017 and 2018.',
-        ssiStat1Number: '7 years', ssiStat1Title: 'Living in Thailand', ssiStat1Body: 'A personal and professional chapter that shaped a large part of my journey.',
-        ssiStat2Title: 'SSI Instructor Trainer', ssiStat2Body: 'Training diving professionals and instructors within the SSI system.',
-        ssiStat3Title: 'Instructor Trainer of the Year', ssiStat3Body: 'SSI recognition received in two consecutive years.',
-        careerClose: 'A back injury eventually closed my professional diving chapter. No drama: it was time to change direction and return to a part of me that had always been there — technology.'
-      },
-      th: {
-        eyebrow: 'เทคโนโลยี · โปรเจกต์ · การเรียนรู้',
-        intro: 'จากเทคโนโลยีสู่การดำน้ำอาชีพ และกลับมาสู่การเขียนโค้ด ปัจจุบันผมเรียน Computer Engineering ที่ URV และพัฒนาโปรเจกต์ดิจิทัลของตัวเอง',
-        pill1: 'Computer Engineering · URV', pill2: 'โปรเจกต์ส่วนตัว', pill3: 'Cambrils · Tarragona', scroll: 'เรื่องราวที่ยังคงพัฒนา ↓',
-        aboutKicker: 'เกี่ยวกับผม', aboutTitle: 'เส้นทางที่ไม่เคยเป็นเส้นตรง',
-        aboutLead: 'เทคโนโลยีอยู่ใกล้ตัวผมมาตลอด แม้เส้นทางสู่ Computer Engineering จะพาผมไปผ่านหลายบทของชีวิตก่อนจะกลับมาสู่การเขียนโค้ดอีกครั้ง',
-        aboutBody: 'ผมเกิดที่ Cambrils ในปี 1981 เริ่มต้นจากงานออกแบบ ระบบเครือข่าย และฮาร์ดแวร์ เคยสร้างธุรกิจเทคโนโลยีขนาดเล็กของตัวเอง ก่อนจะเปลี่ยนเส้นทางชีวิตอย่างสิ้นเชิง ผมใช้ชีวิตในประเทศไทยเจ็ดปี ที่ซึ่งการดำน้ำกลายเป็นอาชีพและผมได้ฝึกอบรมครูสอนดำน้ำคนอื่น ๆ อาการบาดเจ็บที่หลังทำให้บทนั้นจบลงและเปิดบทใหม่ ปัจจุบันผมยังคงเรียน เขียนโปรแกรม และสร้างโปรเจกต์ของตัวเอง',
-        timelineTitle: 'เส้นทางของผมแบบย่อ', timelineHint: 'เรื่องราวยังดำเนินต่อ',
-        t1Title: 'Cambrils', t1Body: 'จุดเริ่มต้นของความสนใจด้านคอมพิวเตอร์ การออกแบบ และวิดีโอเกม',
-        t2Time: 'อายุ 22–28', t2Body: 'งานออกแบบ ระบบเครือข่าย ฮาร์ดแวร์ และประสบการณ์แรกในการสร้างและบริหารธุรกิจของตัวเอง',
-        t3Time: '7 ปี', t3Title: 'ประเทศไทย', t3Body: 'การดำน้ำเปลี่ยนจากงานอดิเรกเป็นอาชีพ และกลายเป็นช่วงเวลาสำคัญในชีวิตของผม',
-        t4Title: 'SSI Instructor Trainer', t4Body: 'แปดปีในการฝึกอบรมมืออาชีพ และได้รับรางวัล Instructor Trainer of the Year ในปี 2017 และ 2018',
-        t5Time: 'ปัจจุบัน', t5Title: 'Computer Engineering', t5Body: 'กลับมาสู่เทคโนโลยีอีกครั้ง เรียนที่ URV และพัฒนาโปรเจกต์ดิจิทัลใหม่ ๆ',
-        divingKicker: 'ประเทศไทย · SSI', divingTitle: 'จากผู้สอน สู่การฝึกอบรมผู้สอน',
-        divingLead: 'การดำน้ำเริ่มจากความตั้งใจที่จะเรียนรู้สิ่งใหม่ และสุดท้ายกลายเป็นอาชีพของผม',
-        divingBody: 'ในเดือนกันยายน 2016 ผมก้าวสู่ระดับ SSI Instructor Trainer หลังจากนั้นงานของผมไม่ได้มีเพียงการสอนคนให้ดำน้ำ แต่ยังรวมถึงการฝึกอบรมครูสอนดำน้ำเพื่อให้พวกเขาสามารถถ่ายทอดความรู้ต่อไป เส้นทางนี้ได้รับการยอมรับจาก SSI ด้วยรางวัล Instructor Trainer of the Year สองปีติดต่อกัน คือปี 2017 และ 2018',
-        ssiStat1Number: '7 ปี', ssiStat1Title: 'ใช้ชีวิตในประเทศไทย', ssiStat1Body: 'ช่วงเวลาสำคัญทั้งในชีวิตส่วนตัวและการทำงาน ซึ่งมีอิทธิพลต่อเส้นทางของผมอย่างมาก',
-        ssiStat2Title: 'SSI Instructor Trainer', ssiStat2Body: 'ฝึกอบรมมืออาชีพและครูสอนดำน้ำภายในระบบ SSI',
-        ssiStat3Title: 'Instructor Trainer of the Year', ssiStat3Body: 'รางวัลจาก SSI ที่ได้รับสองปีติดต่อกัน',
-        careerClose: 'อาการบาดเจ็บที่หลังทำให้ช่วงชีวิตการทำงานด้านการดำน้ำของผมสิ้นสุดลง ไม่ได้มีดราม่าอะไร เพียงถึงเวลาที่ต้องเปลี่ยนทิศทาง และกลับไปหาส่วนหนึ่งของตัวเองที่อยู่กับผมมาตลอด นั่นคือเทคโนโลยี'
-      }
+    const translations={
+      es:{navAbout:'Sobre mí',navProjects:'Proyectos',navTech:'Tecnología',navContact:'Contacto',eyebrow:'Tecnología · proyectos · aprendizaje',intro:'De la tecnología al buceo profesional y de vuelta al código. Hoy estudio Ingeniería Informática en la URV y desarrollo proyectos digitales propios.',pill1:'Ingeniería Informática · URV',pill2:'Proyectos propios',pill3:'Cambrils · Tarragona',scroll:'Una historia en evolución ↓',aboutKicker:'Sobre mí',aboutTitle:'Un camino poco lineal.',aboutLead:'Siempre he estado cerca de la tecnología, aunque mi camino hasta la Ingeniería Informática ha pasado por muchos lugares antes de volver al código.',aboutBody:'Nací en Cambrils en 1981. Empecé entre diseño, redes y hardware, levanté una pequeña empresa tecnológica y más tarde cambié de escenario por completo. Viví siete años en Tailandia, donde convertí el buceo en mi profesión y llegué a formar a otros instructores. Una lesión de espalda cerró aquella etapa y abrió otra: hoy sigo estudiando, programando y construyendo proyectos propios.',timelineTitle:'El recorrido, en pocas paradas',timelineHint:'La historia continúa',t1Title:'Cambrils',t1Body:'Aquí empieza todo: curiosidad por la informática, el diseño y los videojuegos.',t2Time:'22–28 años',t2Body:'Diseño, redes, hardware y una primera experiencia creando y gestionando una empresa propia.',t3Time:'7 años',t3Title:'Tailandia',t3Body:'El buceo pasó de afición a profesión y terminó convirtiéndose en una etapa decisiva de mi vida.',t4Body:'Ocho años formando profesionales. Instructor Trainer of the Year en 2017 y 2018.',t5Time:'Actualidad',t5Title:'Ingeniería Informática',t5Body:'De vuelta a la tecnología: estudio en la URV y desarrollo nuevos proyectos digitales.',divingKicker:'Tailandia · SSI',divingTitle:'De instructor a formar instructores.',divingLead:'El buceo empezó como una forma de aprender algo nuevo y acabó convirtiéndose en una carrera profesional.',divingBody:'En septiembre de 2016 alcancé el nivel de SSI Instructor Trainer. Durante los años siguientes pasé a formar a instructores para que ellos pudieran enseñar a otros. Ese recorrido recibió el reconocimiento de SSI con el premio Instructor Trainer of the Year dos años consecutivos, en 2017 y 2018.',ssiStat1Number:'7 años',ssiStat1Title:'Viviendo en Tailandia',ssiStat1Body:'Una etapa personal y profesional que terminó marcando gran parte de mi trayectoria.',ssiStat2Body:'Formación de profesionales e instructores dentro del sistema SSI.',ssiStat3Body:'Reconocimiento de SSI recibido durante dos años consecutivos.',careerClose:'Una lesión de espalda terminó cerrando mi etapa profesional en el buceo. Fue el momento de cambiar de dirección y recuperar una parte de mí que siempre había estado ahí: la tecnología.',archiveNote:'Aquí incorporaremos el archivo visual de esta etapa: formación de instructores, buceo y el diploma SSI de 2018.',presentKicker:'El presente',presentTitle:'Volver al código, pero con otra perspectiva.',presentLead:'La tecnología no es una etapa nueva: es el hilo que ha ido apareciendo una y otra vez a lo largo de mi vida.',presentBody:'Actualmente curso Ingeniería Informática en la Universitat Rovira i Virgili y dedico buena parte de mi aprendizaje a construir cosas reales. Me interesa especialmente transformar problemas concretos en herramientas útiles, aprender nuevas plataformas y seguir ampliando mi forma de desarrollar software.',projectsKicker:'Proyectos',projectsTitle:'Aprender construyendo.',projectsIntro:'Este espacio irá creciendo con los proyectos en los que vaya trabajando. No es una lista cerrada: es una fotografía de lo que estoy construyendo ahora.',statusActive:'En desarrollo',statusConcept:'En desarrollo',statusLive:'Online',taxiBody:'Aplicación Android orientada a simplificar tareas y consultas del trabajo diario del taxi, con información local, utilidades y experimentación con Android Auto.',diveMapBody:'Un proyecto para explorar puntos de buceo de todo el mundo con información útil y una representación visual del fondo que ayude a entender cada inmersión antes de entrar al agua.',communityTag:'Comunidad',webBody:'Esta propia web: un espacio personal, portfolio y archivo de trayectoria construido con una arquitectura sencilla, rápida y de coste mínimo.',skillsKicker:'Tecnología',skillsTitle:'Herramientas que voy convirtiendo en oficio.',skillsIntro:'No me interesa presentar una lista infinita de tecnologías. Prefiero mostrar las áreas en las que estoy trabajando de verdad y seguir actualizándolas conforme avance.',skill1:'Desarrollo de aplicaciones Android, interfaces móviles, persistencia de datos, geolocalización e integración con Android Auto.',skill2:'HTML, CSS, JavaScript, control de versiones y despliegues automáticos. Esta web forma parte del aprendizaje.',skill3Title:'Siguiente etapa · Apple',skill3:'Ampliando el entorno de desarrollo hacia macOS e iOS para poder construir y publicar también dentro del ecosistema Apple.',contactKicker:'Contacto',contactTitle:'Si quieres hablar, aquí me encuentras.',contactBody:'Para proyectos, tecnología o cualquier propuesta que tenga sentido. El formulario enviará el mensaje de forma privada sin publicar mi dirección de correo.',formName:'Nombre',formEmail:'Correo',formSubject:'Asunto',formMessage:'Mensaje',formNote:'El correo no se mostrará públicamente. En el siguiente paso activaremos protección Cloudflare Turnstile y el envío privado.',formButton:'Enviar mensaje',formPending:'El formulario está preparado visualmente; falta conectar la protección anti-spam y el servicio de envío.'},
+      ca:{navAbout:'Sobre mi',navProjects:'Projectes',navTech:'Tecnologia',navContact:'Contacte',eyebrow:'Tecnologia · projectes · aprenentatge',intro:'De la tecnologia al busseig professional i de tornada al codi. Avui estudio Enginyeria Informàtica a la URV i desenvolupo projectes digitals propis.',pill1:'Enginyeria Informàtica · URV',pill2:'Projectes propis',pill3:'Cambrils · Tarragona',scroll:'Una història en evolució ↓',aboutKicker:'Sobre mi',aboutTitle:'Un camí poc lineal.',aboutLead:'Sempre he estat a prop de la tecnologia, tot i que el meu camí fins a l’Enginyeria Informàtica ha passat per molts llocs abans de tornar al codi.',aboutBody:'Vaig néixer a Cambrils l’any 1981. Vaig començar entre disseny, xarxes i maquinari, vaig aixecar una petita empresa tecnològica i més tard vaig canviar completament d’escenari. Vaig viure set anys a Tailàndia, on vaig convertir el busseig en la meva professió i vaig arribar a formar altres instructors. Una lesió d’esquena va tancar aquella etapa i en va obrir una altra: avui continuo estudiant, programant i construint projectes propis.',timelineTitle:'El recorregut, en poques parades',timelineHint:'La història continua',t1Title:'Cambrils',t1Body:'Aquí comença tot: curiositat per la informàtica, el disseny i els videojocs.',t2Time:'22–28 anys',t2Body:'Disseny, xarxes, maquinari i una primera experiència creant i gestionant una empresa pròpia.',t3Time:'7 anys',t3Title:'Tailàndia',t3Body:'El busseig va passar d’afició a professió i es va convertir en una etapa decisiva de la meva vida.',t4Body:'Vuit anys formant professionals. Instructor Trainer of the Year el 2017 i el 2018.',t5Time:'Actualitat',t5Title:'Enginyeria Informàtica',t5Body:'De tornada a la tecnologia: estudio a la URV i desenvolupo nous projectes digitals.',divingKicker:'Tailàndia · SSI',divingTitle:'D’instructor a formar instructors.',divingLead:'El busseig va començar com una manera d’aprendre alguna cosa nova i va acabar convertint-se en una carrera professional.',divingBody:'El setembre de 2016 vaig assolir el nivell de SSI Instructor Trainer. Durant els anys següents vaig passar a formar instructors perquè poguessin ensenyar altres persones. Aquest recorregut va rebre el reconeixement de SSI amb el premi Instructor Trainer of the Year dos anys consecutius, el 2017 i el 2018.',ssiStat1Number:'7 anys',ssiStat1Title:'Vivint a Tailàndia',ssiStat1Body:'Una etapa personal i professional que va marcar gran part de la meva trajectòria.',ssiStat2Body:'Formació de professionals i instructors dins del sistema SSI.',ssiStat3Body:'Reconeixement de SSI rebut durant dos anys consecutius.',careerClose:'Una lesió d’esquena va acabar tancant la meva etapa professional en el busseig. Va ser el moment de canviar de direcció i recuperar una part de mi que sempre hi havia estat: la tecnologia.',archiveNote:'Aquí incorporarem l’arxiu visual d’aquesta etapa: formació d’instructors, busseig i el diploma SSI de 2018.',presentKicker:'El present',presentTitle:'Tornar al codi, però amb una altra perspectiva.',presentLead:'La tecnologia no és una etapa nova: és el fil que ha anat apareixent una vegada i una altra al llarg de la meva vida.',presentBody:'Actualment curso Enginyeria Informàtica a la Universitat Rovira i Virgili i dedico bona part del meu aprenentatge a construir coses reals. M’interessa transformar problemes concrets en eines útils, aprendre noves plataformes i ampliar la meva manera de desenvolupar programari.',projectsKicker:'Projectes',projectsTitle:'Aprendre construint.',projectsIntro:'Aquest espai creixerà amb els projectes en què vagi treballant. No és una llista tancada: és una fotografia del que estic construint ara.',statusActive:'En desenvolupament',statusConcept:'En desenvolupament',statusLive:'Online',taxiBody:'Aplicació Android orientada a simplificar tasques i consultes del treball diari del taxi, amb informació local, utilitats i experimentació amb Android Auto.',diveMapBody:'Un projecte per explorar punts de busseig d’arreu del món amb informació útil i una representació visual del fons que ajudi a entendre cada immersió abans d’entrar a l’aigua.',communityTag:'Comunitat',webBody:'Aquesta mateixa web: un espai personal, portfolio i arxiu de trajectòria construït amb una arquitectura senzilla, ràpida i de cost mínim.',skillsKicker:'Tecnologia',skillsTitle:'Eines que vaig convertint en ofici.',skillsIntro:'No m’interessa presentar una llista infinita de tecnologies. Prefereixo mostrar les àrees en què estic treballant de veritat i actualitzar-les a mesura que avanço.',skill1:'Desenvolupament d’aplicacions Android, interfícies mòbils, persistència de dades, geolocalització i integració amb Android Auto.',skill2:'HTML, CSS, JavaScript, control de versions i desplegaments automàtics. Aquesta web forma part de l’aprenentatge.',skill3Title:'Següent etapa · Apple',skill3:'Ampliant l’entorn de desenvolupament cap a macOS i iOS per poder construir i publicar també dins l’ecosistema Apple.',contactKicker:'Contacte',contactTitle:'Si vols parlar, aquí em trobaràs.',contactBody:'Per a projectes, tecnologia o qualsevol proposta que tingui sentit. El formulari enviarà el missatge de forma privada sense publicar la meva adreça de correu.',formName:'Nom',formEmail:'Correu',formSubject:'Assumpte',formMessage:'Missatge',formNote:'El correu no es mostrarà públicament. En el següent pas activarem la protecció Cloudflare Turnstile i l’enviament privat.',formButton:'Enviar missatge',formPending:'El formulari està preparat visualment; falta connectar la protecció anti-spam i el servei d’enviament.'},
+      en:{navAbout:'About',navProjects:'Projects',navTech:'Technology',navContact:'Contact',eyebrow:'Technology · projects · learning',intro:'From technology to professional diving and back to code. Today I study Computer Engineering at URV and build independent digital projects.',pill1:'Computer Engineering · URV',pill2:'Independent projects',pill3:'Cambrils · Tarragona',scroll:'A story still evolving ↓',aboutKicker:'About me',aboutTitle:'A path that was never linear.',aboutLead:'Technology has always been close to me, although my route to Computer Engineering took me through many different places before returning to code.',aboutBody:'I was born in Cambrils in 1981. I started with design, networks and hardware, built a small technology business and later changed direction completely. I lived in Thailand for seven years, where diving became my profession and I eventually trained other instructors. A back injury closed that chapter and opened another one: today I keep studying, coding and building projects of my own.',timelineTitle:'The journey, in a few stops',timelineHint:'The story continues',t1Title:'Cambrils',t1Body:'This is where it starts: curiosity for computers, design and video games.',t2Time:'Age 22–28',t2Body:'Design, networks, hardware and a first experience creating and running my own business.',t3Time:'7 years',t3Title:'Thailand',t3Body:'Diving went from hobby to profession and became a defining chapter of my life.',t4Body:'Eight years training professionals. Instructor Trainer of the Year in 2017 and 2018.',t5Time:'Today',t5Title:'Computer Engineering',t5Body:'Back to technology: studying at URV and developing new digital projects.',divingKicker:'Thailand · SSI',divingTitle:'From instructor to training instructors.',divingLead:'Diving started as a way to learn something new and eventually became a professional career.',divingBody:'In September 2016 I reached SSI Instructor Trainer level. Over the following years I moved into training instructors so they could teach others. That journey was recognised by SSI with the Instructor Trainer of the Year award in two consecutive years, 2017 and 2018.',ssiStat1Number:'7 years',ssiStat1Title:'Living in Thailand',ssiStat1Body:'A personal and professional chapter that shaped a large part of my journey.',ssiStat2Body:'Training diving professionals and instructors within the SSI system.',ssiStat3Body:'SSI recognition received in two consecutive years.',careerClose:'A back injury eventually closed my professional diving chapter. It was time to change direction and return to a part of me that had always been there: technology.',archiveNote:'This area will hold the visual archive of that chapter: instructor training, diving and the 2018 SSI award certificate.',presentKicker:'Today',presentTitle:'Back to code, with a different perspective.',presentLead:'Technology is not a new chapter: it is the thread that has kept returning throughout my life.',presentBody:'I am currently studying Computer Engineering at Universitat Rovira i Virgili and I spend much of that learning time building real things. I am especially interested in turning concrete problems into useful tools, learning new platforms and expanding the way I build software.',projectsKicker:'Projects',projectsTitle:'Learning by building.',projectsIntro:'This space will grow with the projects I work on. It is not a finished list; it is a snapshot of what I am building now.',statusActive:'In development',statusConcept:'In development',statusLive:'Live',taxiBody:'An Android application designed to simplify everyday taxi tasks and queries, combining local information, utilities and experimentation with Android Auto.',diveMapBody:'A project for exploring dive sites around the world with useful information and visual representations of the underwater terrain to understand a dive before entering the water.',communityTag:'Community',webBody:'This website itself: a personal space, portfolio and career archive built with a simple, fast and low-cost architecture.',skillsKicker:'Technology',skillsTitle:'Tools I am turning into a craft.',skillsIntro:'I am not interested in presenting an endless technology list. I would rather show the areas I am genuinely working in and keep updating them as I progress.',skill1:'Android application development, mobile interfaces, data persistence, geolocation and Android Auto integration.',skill2:'HTML, CSS, JavaScript, version control and automatic deployments. This website is part of that learning process.',skill3Title:'Next stage · Apple',skill3:'Expanding my development environment towards macOS and iOS so I can also build and publish inside the Apple ecosystem.',contactKicker:'Contact',contactTitle:'If you want to talk, this is where to find me.',contactBody:'For projects, technology or any proposal that makes sense. The form will send messages privately without publishing my email address.',formName:'Name',formEmail:'Email',formSubject:'Subject',formMessage:'Message',formNote:'My email address will not be published. In the next step we will enable Cloudflare Turnstile protection and private delivery.',formButton:'Send message',formPending:'The form layout is ready; anti-spam protection and message delivery still need to be connected.'},
+      th:{navAbout:'เกี่ยวกับผม',navProjects:'โปรเจกต์',navTech:'เทคโนโลยี',navContact:'ติดต่อ',eyebrow:'เทคโนโลยี · โปรเจกต์ · การเรียนรู้',intro:'จากเทคโนโลยีสู่การดำน้ำอาชีพ และกลับมาสู่การเขียนโค้ด ปัจจุบันผมเรียน Computer Engineering ที่ URV และพัฒนาโปรเจกต์ดิจิทัลของตัวเอง',pill1:'Computer Engineering · URV',pill2:'โปรเจกต์ส่วนตัว',pill3:'Cambrils · Tarragona',scroll:'เรื่องราวที่ยังคงพัฒนา ↓',aboutKicker:'เกี่ยวกับผม',aboutTitle:'เส้นทางที่ไม่เคยเป็นเส้นตรง',aboutLead:'เทคโนโลยีอยู่ใกล้ตัวผมมาตลอด แม้เส้นทางสู่ Computer Engineering จะพาผมผ่านหลายบทของชีวิตก่อนจะกลับมาสู่การเขียนโค้ดอีกครั้ง',aboutBody:'ผมเกิดที่ Cambrils ในปี 1981 เริ่มต้นจากงานออกแบบ ระบบเครือข่าย และฮาร์ดแวร์ เคยสร้างธุรกิจเทคโนโลยีขนาดเล็กของตัวเอง ก่อนจะเปลี่ยนเส้นทางชีวิตอย่างสิ้นเชิง ผมใช้ชีวิตในประเทศไทยเจ็ดปี ที่ซึ่งการดำน้ำกลายเป็นอาชีพและผมได้ฝึกอบรมครูสอนดำน้ำคนอื่น ๆ อาการบาดเจ็บที่หลังทำให้บทนั้นจบลงและเปิดบทใหม่ ปัจจุบันผมยังคงเรียน เขียนโปรแกรม และสร้างโปรเจกต์ของตัวเอง',timelineTitle:'เส้นทางของผมแบบย่อ',timelineHint:'เรื่องราวยังดำเนินต่อ',t1Title:'Cambrils',t1Body:'จุดเริ่มต้นของความสนใจด้านคอมพิวเตอร์ การออกแบบ และวิดีโอเกม',t2Time:'อายุ 22–28',t2Body:'งานออกแบบ ระบบเครือข่าย ฮาร์ดแวร์ และประสบการณ์แรกในการสร้างและบริหารธุรกิจของตัวเอง',t3Time:'7 ปี',t3Title:'ประเทศไทย',t3Body:'การดำน้ำเปลี่ยนจากงานอดิเรกเป็นอาชีพ และกลายเป็นช่วงเวลาสำคัญในชีวิตของผม',t4Body:'แปดปีในการฝึกอบรมมืออาชีพ และได้รับรางวัล Instructor Trainer of the Year ในปี 2017 และ 2018',t5Time:'ปัจจุบัน',t5Title:'Computer Engineering',t5Body:'กลับมาสู่เทคโนโลยีอีกครั้ง เรียนที่ URV และพัฒนาโปรเจกต์ดิจิทัลใหม่ ๆ',divingKicker:'ประเทศไทย · SSI',divingTitle:'จากผู้สอน สู่การฝึกผู้สอน',divingLead:'การดำน้ำเริ่มจากการอยากเรียนรู้สิ่งใหม่ และสุดท้ายกลายเป็นอาชีพ',divingBody:'ในเดือนกันยายน 2016 ผมก้าวขึ้นเป็น SSI Instructor Trainer หลังจากนั้นบทบาทของผมเปลี่ยนจากการสอนดำน้ำไปสู่การฝึกครูสอนดำน้ำให้สามารถถ่ายทอดความรู้ต่อได้ เส้นทางนี้ได้รับการยอมรับจาก SSI ด้วยรางวัล Instructor Trainer of the Year ติดต่อกันสองปี คือ 2017 และ 2018',ssiStat1Number:'7 ปี',ssiStat1Title:'ใช้ชีวิตในประเทศไทย',ssiStat1Body:'ช่วงเวลาทั้งส่วนตัวและอาชีพที่มีอิทธิพลอย่างมากต่อเส้นทางชีวิตของผม',ssiStat2Body:'ฝึกอบรมมืออาชีพและครูสอนดำน้ำภายในระบบ SSI',ssiStat3Body:'รางวัลจาก SSI ที่ได้รับติดต่อกันสองปี',careerClose:'อาการบาดเจ็บที่หลังทำให้ช่วงชีวิตการทำงานด้านดำน้ำสิ้นสุดลง ถึงเวลาที่ต้องเปลี่ยนทิศทางและกลับไปหาส่วนหนึ่งของตัวเองที่อยู่มาตลอด นั่นคือเทคโนโลยี',archiveNote:'ส่วนนี้จะใช้เป็นคลังภาพของช่วงเวลานั้น ทั้งการฝึกครูสอนดำน้ำ การดำน้ำ และใบประกาศรางวัล SSI ปี 2018',presentKicker:'ปัจจุบัน',presentTitle:'กลับมาสู่โค้ด ด้วยมุมมองที่ต่างออกไป',presentLead:'เทคโนโลยีไม่ใช่บทใหม่ แต่มันคือเส้นด้ายที่กลับมาเชื่อมโยงชีวิตของผมอยู่เสมอ',presentBody:'ปัจจุบันผมกำลังศึกษา Computer Engineering ที่ Universitat Rovira i Virgili และใช้เวลาส่วนใหญ่ในการเรียนรู้ผ่านการสร้างสิ่งที่ใช้งานได้จริง ผมสนใจการเปลี่ยนปัญหาที่ชัดเจนให้กลายเป็นเครื่องมือที่มีประโยชน์ เรียนรู้แพลตฟอร์มใหม่ ๆ และพัฒนาวิธีการสร้างซอฟต์แวร์ของตัวเอง',projectsKicker:'โปรเจกต์',projectsTitle:'เรียนรู้ด้วยการลงมือสร้าง',projectsIntro:'พื้นที่นี้จะเติบโตไปพร้อมกับโปรเจกต์ที่ผมกำลังทำ ไม่ใช่รายการที่เสร็จสมบูรณ์ แต่เป็นภาพของสิ่งที่ผมกำลังสร้างอยู่ตอนนี้',statusActive:'กำลังพัฒนา',statusConcept:'กำลังพัฒนา',statusLive:'ออนไลน์',taxiBody:'แอป Android ที่ออกแบบมาเพื่อช่วยลดความซับซ้อนของงานและการค้นข้อมูลในชีวิตประจำวันของแท็กซี่ โดยรวมข้อมูลท้องถิ่น เครื่องมือใช้งาน และการทดลองกับ Android Auto',diveMapBody:'โปรเจกต์สำหรับสำรวจจุดดำน้ำทั่วโลก พร้อมข้อมูลที่เป็นประโยชน์และภาพแสดงลักษณะพื้นใต้น้ำ เพื่อช่วยให้เข้าใจการดำน้ำก่อนลงน้ำจริง',communityTag:'ชุมชน',webBody:'เว็บไซต์นี้เอง พื้นที่ส่วนตัว พอร์ตโฟลิโอ และบันทึกเส้นทางชีวิต สร้างด้วยสถาปัตยกรรมที่เรียบง่าย รวดเร็ว และมีต้นทุนต่ำ',skillsKicker:'เทคโนโลยี',skillsTitle:'เครื่องมือที่ผมกำลังเปลี่ยนให้เป็นทักษะอาชีพ',skillsIntro:'ผมไม่ต้องการแสดงรายการเทคโนโลยียาว ๆ แต่ต้องการแสดงเฉพาะสิ่งที่ผมกำลังทำจริง และค่อย ๆ อัปเดตตามพัฒนาการของตัวเอง',skill1:'การพัฒนาแอป Android อินเทอร์เฟซมือถือ การจัดเก็บข้อมูล ตำแหน่งพิกัด และการเชื่อมต่อกับ Android Auto',skill2:'HTML, CSS, JavaScript, การควบคุมเวอร์ชัน และการ deploy อัตโนมัติ เว็บไซต์นี้เป็นส่วนหนึ่งของการเรียนรู้',skill3Title:'ขั้นต่อไป · Apple',skill3:'กำลังขยายสภาพแวดล้อมการพัฒนาไปยัง macOS และ iOS เพื่อให้สามารถสร้างและเผยแพร่ในระบบนิเวศของ Apple ได้ด้วย',contactKicker:'ติดต่อ',contactTitle:'ถ้าคุณอยากพูดคุย สามารถติดต่อผมได้ที่นี่',contactBody:'สำหรับโปรเจกต์ เทคโนโลยี หรือข้อเสนอที่น่าสนใจ แบบฟอร์มจะส่งข้อความแบบส่วนตัวโดยไม่เปิดเผยอีเมลของผม',formName:'ชื่อ',formEmail:'อีเมล',formSubject:'หัวข้อ',formMessage:'ข้อความ',formNote:'อีเมลของผมจะไม่ถูกเผยแพร่ ขั้นตอนถัดไปเราจะเปิดใช้ Cloudflare Turnstile และระบบส่งข้อความแบบส่วนตัว',formButton:'ส่งข้อความ',formPending:'รูปแบบฟอร์มพร้อมแล้ว เหลือเพียงเชื่อมระบบป้องกันสแปมและการส่งข้อความ'}
     };
-
-    const buttons = document.querySelectorAll('[data-lang]');
-    const nodes = document.querySelectorAll('[data-i18n]');
-
-    function setLanguage(lang) {
-      if (!translations[lang]) return;
-      document.documentElement.lang = lang;
-      nodes.forEach(node => {
-        const key = node.dataset.i18n;
-        if (translations[lang][key]) node.textContent = translations[lang][key];
-      });
-      buttons.forEach(button => button.classList.toggle('active', button.dataset.lang === lang));
-      localStorage.setItem('fxavi-lang', lang);
-    }
-
-    buttons.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
-    setLanguage(localStorage.getItem('fxavi-lang') || 'es');
+    const langButtons=document.querySelectorAll('[data-lang]');
+    const i18nNodes=document.querySelectorAll('[data-i18n]');
+    function setLanguage(lang){if(!translations[lang])return;document.documentElement.lang=lang;i18nNodes.forEach(node=>{const key=node.dataset.i18n;if(translations[lang][key])node.textContent=translations[lang][key]});langButtons.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));localStorage.setItem('fxavi-lang',lang)}
+    langButtons.forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
+    setLanguage(localStorage.getItem('fxavi-lang')||'es');
+    document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('formMessage').style.display='block'});
   </script>
 </body>
 </html>
