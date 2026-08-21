@@ -1,4 +1,4 @@
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   try {
     const body = await request.json();
     const name = String(body.name || '').trim();
@@ -19,24 +19,24 @@ export async function onRequestPost({ request, env }) {
       return json({ ok: false, error: 'not_configured' }, 503);
     }
 
-    const verifyData = new FormData();
-    verifyData.append('secret', env.TURNSTILE_SECRET_KEY);
-    verifyData.append('response', turnstileToken);
+    const verifyBody = new URLSearchParams({
+      secret: env.TURNSTILE_SECRET_KEY,
+      response: turnstileToken
+    });
     const remoteIp = request.headers.get('CF-Connecting-IP');
-    if (remoteIp) verifyData.append('remoteip', remoteIp);
+    if (remoteIp) verifyBody.set('remoteip', remoteIp);
 
     const verifyResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
-      body: verifyData
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: verifyBody
     });
 
-    let verification;
-    try {
-      verification = await verifyResponse.json();
-    } catch {
+    if (!verifyResponse.ok) {
       return json({ ok: false, error: `turnstile_http_${verifyResponse.status}` }, 502);
     }
 
+    const verification = await verifyResponse.json();
     if (!verification.success) {
       const codes = Array.isArray(verification['error-codes']) ? verification['error-codes'].join(',') : 'unknown';
       return json({ ok: false, error: `turnstile_failed:${codes}` }, 400);
@@ -53,33 +53,31 @@ export async function onRequestPost({ request, env }) {
       message
     ].join('\n');
 
-    const sendResponse = await fetch('https://api.resend.com/emails', {
+    const sendPromise = fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         from: env.CONTACT_FROM,
         to: [env.CONTACT_TO],
-        reply_to: email,
         subject: `fxavigomez.es — ${safeSubject}`,
         text: mailText
       })
+    }).then(async response => {
+      const raw = await response.text();
+      if (!response.ok) {
+        console.error('Resend contact error', response.status, raw.slice(0, 500));
+      } else {
+        console.log('Resend contact accepted', raw.slice(0, 300));
+      }
+    }).catch(error => {
+      console.error('Resend contact exception', String(error?.message || error));
     });
 
-    if (!sendResponse.ok) {
-      let detail = '';
-      try {
-        const resendBody = await sendResponse.json();
-        detail = String(resendBody?.message || resendBody?.error || resendBody?.name || '').slice(0, 180);
-      } catch {
-        detail = '';
-      }
-      return json({ ok: false, error: `send_failed:${sendResponse.status}${detail ? ':' + detail : ''}` }, 502);
-    }
-
-    return json({ ok: true });
+    waitUntil(sendPromise);
+    return json({ ok: true, queued: true });
   } catch (error) {
     return json({ ok: false, error: `unexpected_error:${error?.name || 'Error'}` }, 500);
   }
