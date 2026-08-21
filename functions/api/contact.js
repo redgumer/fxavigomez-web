@@ -29,10 +29,17 @@ export async function onRequestPost({ request, env }) {
       method: 'POST',
       body: verifyData
     });
-    const verification = await verifyResponse.json();
+
+    let verification;
+    try {
+      verification = await verifyResponse.json();
+    } catch {
+      return json({ ok: false, error: `turnstile_http_${verifyResponse.status}` }, 502);
+    }
 
     if (!verification.success) {
-      return json({ ok: false, error: 'turnstile_failed' }, 400);
+      const codes = Array.isArray(verification['error-codes']) ? verification['error-codes'].join(',') : 'unknown';
+      return json({ ok: false, error: `turnstile_failed:${codes}` }, 400);
     }
 
     const safeSubject = subject.slice(0, 140);
@@ -62,12 +69,19 @@ export async function onRequestPost({ request, env }) {
     });
 
     if (!sendResponse.ok) {
-      return json({ ok: false, error: 'send_failed' }, 502);
+      let detail = '';
+      try {
+        const resendBody = await sendResponse.json();
+        detail = String(resendBody?.message || resendBody?.error || resendBody?.name || '').slice(0, 180);
+      } catch {
+        detail = '';
+      }
+      return json({ ok: false, error: `send_failed:${sendResponse.status}${detail ? ':' + detail : ''}` }, 502);
     }
 
     return json({ ok: true });
-  } catch {
-    return json({ ok: false, error: 'unexpected_error' }, 500);
+  } catch (error) {
+    return json({ ok: false, error: `unexpected_error:${error?.name || 'Error'}` }, 500);
   }
 }
 
