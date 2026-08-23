@@ -1,4 +1,6 @@
-export async function onRequestPost({ request, env, waitUntil }) {
+export async function onRequestPost(context) {
+  const { request, env } = context;
+
   try {
     const body = await request.json();
     const name = String(body.name || '').trim();
@@ -76,7 +78,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
       console.error('Resend contact exception', String(error?.message || error));
     });
 
-    waitUntil(sendPromise);
+    context.waitUntil(sendPromise);
     return json({ ok: true, queued: true });
   } catch (error) {
     return json({ ok: false, error: `unexpected_error:${error?.name || 'Error'}` }, 500);
