@@ -55,7 +55,7 @@ export async function onRequestPost(context) {
       message
     ].join('\n');
 
-    const sendPromise = fetch('https://api.resend.com/emails', {
+    const resendResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${env.RESEND_API_KEY}`,
@@ -67,20 +67,23 @@ export async function onRequestPost(context) {
         subject: `fxavigomez.es — ${safeSubject}`,
         text: mailText
       })
-    }).then(async response => {
-      const raw = await response.text();
-      if (!response.ok) {
-        console.error('Resend contact error', response.status, raw.slice(0, 500));
-      } else {
-        console.log('Resend contact accepted', raw.slice(0, 300));
-      }
-    }).catch(error => {
-      console.error('Resend contact exception', String(error?.message || error));
     });
 
-    context.waitUntil(sendPromise);
-    return json({ ok: true, queued: true });
+    const raw = await resendResponse.text();
+
+    if (!resendResponse.ok) {
+      console.error('Resend contact error', resendResponse.status, raw.slice(0, 500));
+      return json({ ok: false, error: `send_failed:${resendResponse.status}` }, 502);
+    }
+
+    let resendId = null;
+    try {
+      resendId = JSON.parse(raw)?.id || null;
+    } catch {}
+
+    return json({ ok: true, sent: true, id: resendId });
   } catch (error) {
+    console.error('Contact function exception', String(error?.message || error));
     return json({ ok: false, error: `unexpected_error:${error?.name || 'Error'}` }, 500);
   }
 }
