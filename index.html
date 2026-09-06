@@ -9,6 +9,7 @@
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="theme-color" content="#081019">
   <link rel="canonical" href="https://fxavigomez.es/">
+  <link rel="preload" as="image" href="assets/images/hero-xavier.png" fetchpriority="high">
   <link rel="icon" type="image/png" href="assets/images/redgumer-logo.png">
 
   <meta property="og:type" content="website">
@@ -77,7 +78,6 @@
     ]
   }
   </script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
   <style>
     :root{--bg:#081019;--text:#f7f8fa;--muted:#b8c1ca;--accent:#f0a55a;--paper:#f1f0ea;--ink:#111a22;--pm:#5c6670;--deep:#0b294c;--deep2:#081d36;--line:rgba(255,255,255,.15);--pline:rgba(17,26,34,.14)}
     *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-user-select:none;user-select:none}input,textarea{-webkit-user-select:text;user-select:text}a{color:inherit}button,input,textarea{font:inherit}.inner{width:min(1220px,100%);margin:auto}.kicker{font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}.title{font-size:clamp(3rem,6vw,6.3rem);line-height:.95;letter-spacing:-.055em}
@@ -97,7 +97,7 @@
 <body>
   <main class="hero" id="inicio">
     <header>
-      <img class="logo" src="assets/images/redgumer-logo.png" alt="Redgumer Dev">
+      <img class="logo" src="assets/images/redgumer-logo.png" alt="Redgumer Dev" width="58" height="58" decoding="async">
       <nav class="nav" id="mainNav"><a href="#sobre-mi" data-i18n="navAbout">Sobre mí</a><a href="#proyectos" data-i18n="navProjects">Proyectos</a><a href="#tecnologia" data-i18n="navTech">Tecnología</a><a href="#contacto" data-i18n="navContact">Contacto</a></nav>
       <div class="langs" aria-label="Idioma"><button class="active" data-lang="es">ES</button><button data-lang="ca">CA</button><button data-lang="en">EN</button><button data-lang="th">TH</button></div>
     </header>
@@ -130,7 +130,7 @@
     <div class="section-next"><a href="#presente" data-i18n="nextPresent">De Tailandia al presente ↓</a></div>
   </div></section>
 
-  <section class="present" id="presente"><div class="inner present-grid"><div class="mark"><img src="assets/images/redgumer-logo.png" alt="Redgumer Dev"></div><div><div class="kicker" data-i18n="presentKicker">El presente</div><h2 class="title" data-i18n="presentTitle">Volver al código, pero con otra perspectiva.</h2><p class="lead" data-i18n="presentLead">La tecnología no es una etapa nueva: es el hilo que ha ido apareciendo una y otra vez a lo largo de mi vida.</p><p class="body" data-i18n="presentBody">Actualmente curso Ingeniería Informática en la Universitat Rovira i Virgili y dedico buena parte de mi aprendizaje a construir cosas reales. Me interesa transformar problemas concretos en herramientas útiles y seguir ampliando mi forma de desarrollar software.</p><div class="section-next"><a href="#proyectos" data-i18n="nextProjects">Lo que estoy construyendo ahora ↓</a></div></div></div></section>
+  <section class="present" id="presente"><div class="inner present-grid"><div class="mark"><img src="assets/images/redgumer-logo.png" alt="Redgumer Dev" width="340" height="340" loading="lazy" decoding="async"></div><div><div class="kicker" data-i18n="presentKicker">El presente</div><h2 class="title" data-i18n="presentTitle">Volver al código, pero con otra perspectiva.</h2><p class="lead" data-i18n="presentLead">La tecnología no es una etapa nueva: es el hilo que ha ido apareciendo una y otra vez a lo largo de mi vida.</p><p class="body" data-i18n="presentBody">Actualmente curso Ingeniería Informática en la Universitat Rovira i Virgili y dedico buena parte de mi aprendizaje a construir cosas reales. Me interesa transformar problemas concretos en herramientas útiles y seguir ampliando mi forma de desarrollar software.</p><div class="section-next"><a href="#proyectos" data-i18n="nextProjects">Lo que estoy construyendo ahora ↓</a></div></div></div></section>
 
   <section class="projects" id="proyectos"><div class="inner"><div class="projects-head"><div><div class="kicker" data-i18n="projectsKicker">Proyectos</div><h2 class="title" data-i18n="projectsTitle">Aprender construyendo.</h2></div><p data-i18n="projectsIntro">Aquí reúno las aplicaciones y proyectos que he desarrollado hasta ahora, desde herramientas personales hasta los proyectos que siguen creciendo.</p></div><div class="cards">
     <article class="card"><div class="meta"><span data-i18n="published">Publicada</span><span>Android</span></div><h3>Asistente Taxista Salou</h3><p data-i18n="taxi">Aplicación Android orientada a simplificar tareas y consultas del trabajo diario del taxi, con información local, utilidades y experimentación con Android Auto.</p><a href="https://play.google.com/store/apps/details?id=com.taxisalou.app" target="_blank" rel="noopener noreferrer" aria-label="Asistente Taxista Salou en Google Play" style="display:inline-block;align-self:flex-start;margin-top:22px"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" alt="Disponible en Google Play" loading="lazy" style="display:block;height:48px;width:auto"></a><div class="tags"><span>Kotlin</span><span>Android</span><span>Android Auto</span><span>GPS</span></div></article>
@@ -146,7 +146,7 @@
     <form class="form" id="contactForm" novalidate><div class="row"><div class="field"><label for="name" data-i18n="name">Nombre</label><input id="name" name="name" required autocomplete="name"></div><div class="field"><label for="email" data-i18n="email">Correo</label><input id="email" name="email" type="email" required autocomplete="email"></div></div><div class="field"><label for="subject" data-i18n="subject">Asunto</label><input id="subject" name="subject" required></div><div class="field"><label for="message" data-i18n="message">Mensaje</label><textarea id="message" name="message" required></textarea></div><div class="turnstile cf-turnstile" data-sitekey="0x4AAAAAAEWffOAxL2xtgbCS" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div><div class="form-foot"><p class="form-note" data-i18n="privacy">Tu correo no se publica. El formulario se protege con Cloudflare Turnstile.</p><button class="submit" id="submitBtn" type="submit" disabled data-i18n="send">Enviar mensaje</button></div><p class="form-status" id="formStatus">Verificando que eres una persona…</p></form>
   </div></section>
 
-  <footer><div>© 2026 Xavier Gómez · fxavigomez.es</div><img src="assets/images/redgumer-logo.png" alt="Redgumer Dev"></footer>
+  <footer><div>© 2026 Xavier Gómez · fxavigomez.es</div><img src="assets/images/redgumer-logo.png" alt="Redgumer Dev" width="36" height="36" loading="lazy" decoding="async"></footer>
 
   <div class="lightbox" id="lightbox" aria-hidden="true"><button type="button" aria-label="Cerrar">×</button><img alt=""></div>
   <script>
@@ -166,6 +166,28 @@
     window.onTurnstileSuccess=t=>{turnstileToken=t;submit.disabled=false;status.textContent=''};
     window.onTurnstileExpired=()=>{turnstileToken='';submit.disabled=true;status.textContent='La verificación ha caducado. Espera un momento para volver a verificar.'};
     window.onTurnstileError=code=>{turnstileToken='';submit.disabled=true;status.textContent='No se ha podido completar la verificación de seguridad.';console.error('Turnstile error:',code)};
+
+    function loadTurnstile(){
+      if(document.querySelector('script[data-turnstile-loader]'))return;
+      const s=document.createElement('script');
+      s.src='https://challenges.cloudflare.com/turnstile/v0/api.js';
+      s.async=true;
+      s.defer=true;
+      s.dataset.turnstileLoader='true';
+      document.head.appendChild(s);
+    }
+    const contactForm=document.getElementById('contactForm');
+    if('IntersectionObserver' in window){
+      const turnstileObserver=new IntersectionObserver(entries=>{
+        if(entries.some(entry=>entry.isIntersecting)){
+          loadTurnstile();
+          turnstileObserver.disconnect();
+        }
+      },{rootMargin:'500px 0px'});
+      turnstileObserver.observe(contactForm);
+    }else{
+      loadTurnstile();
+    }
     document.getElementById('contactForm').addEventListener('submit',async e=>{e.preventDefault();if(!e.currentTarget.reportValidity())return;if(!turnstileToken){status.textContent='Espera a que termine la verificación de seguridad.';return}submit.disabled=true;const f=new FormData(e.currentTarget);status.textContent='';try{const r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:f.get('name'),email:f.get('email'),subject:f.get('subject'),message:f.get('message'),turnstileToken})});if(r.ok){e.currentTarget.reset()}else{console.error('Contact request failed:',r.status)}}catch(err){console.error('Contact request error:',err)}finally{status.textContent='';turnstileToken='';submit.disabled=true;try{window.turnstile?.reset?.()}catch(err){console.warn('Turnstile reset skipped',err)}}});
   </script>
 </body>
