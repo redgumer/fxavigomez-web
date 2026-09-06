@@ -1,0 +1,31 @@
+# Xavier Gómez
+
+> Web personal de Xavier Gómez sobre trayectoria, tecnología, desarrollo de software y proyectos propios.
+
+La página principal reúne información pública sobre Xavier Gómez, su experiencia profesional, sus estudios de Ingeniería Informática, su etapa en el buceo profesional y los proyectos digitales que desarrolla.
+
+## Página principal
+
+- [Xavier Gómez](https://fxavigomez.es/): Perfil personal, trayectoria, tecnología y proyectos.
+
+## Proyectos destacados
+
+- [Asistente Taxista Salou](https://play.google.com/store/apps/details?id=com.taxisalou.app): Aplicación Android publicada para consultas y utilidades del trabajo diario del taxi.
+- [Proyectos de desarrollo](https://fxavigomez.es/#proyectos): Selección de aplicaciones Android, herramientas y proyectos web.
+- [Tecnología](https://fxavigomez.es/#tecnologia): Áreas y herramientas de desarrollo con las que trabaja actualmente.
+
+## Trayectoria
+
+- [Sobre mí](https://fxavigomez.es/#sobre-mi): Recorrido personal y profesional.
+- [Etapa de buceo profesional](https://fxavigomez.es/#ssi): Experiencia formando profesionales e instructores de buceo.
+- [Presente](https://fxavigomez.es/#presente): Regreso al desarrollo de software y estudios de Ingeniería Informática.
+
+## Contacto y perfiles públicos
+
+- [Contacto](https://fxavigomez.es/#contacto): Formulario de contacto privado.
+- [Instagram](https://www.instagram.com/fxavigomez/): Perfil público.
+- [YouTube](https://www.youtube.com/c/XaviGomezC): Canal público.
+
+## Notas para agentes
+
+El contenido canónico del sitio es https://fxavigomez.es/. Las secciones con fragmentos (#) forman parte de la misma página y no son documentos independientes.
