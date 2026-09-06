@@ -35,7 +35,22 @@
         "url": "https://fxavigomez.es/",
         "name": "Xavier Gómez",
         "inLanguage": "es",
-        "description": "Web personal de Xavier Gómez sobre tecnología, desarrollo de software, trayectoria y proyectos propios."
+        "description": "Web personal de Xavier Gómez sobre tecnología, desarrollo de software, trayectoria y proyectos propios.",
+        "publisher": {
+          "@id": "https://fxavigomez.es/#person"
+        }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://fxavigomez.es/#profile",
+        "url": "https://fxavigomez.es/",
+        "name": "Xavier Gómez | Tecnología, desarrollo y proyectos",
+        "isPartOf": {
+          "@id": "https://fxavigomez.es/#website"
+        },
+        "mainEntity": {
+          "@id": "https://fxavigomez.es/#person"
+        }
       },
       {
         "@type": "Person",
@@ -43,8 +58,12 @@
         "name": "Xavier Gómez",
         "url": "https://fxavigomez.es/",
         "image": "https://fxavigomez.es/assets/images/hero-xavier.png",
+        "mainEntityOfPage": {
+          "@id": "https://fxavigomez.es/#profile"
+        },
         "sameAs": [
-          "https://www.instagram.com/fxavigomez/"
+          "https://www.instagram.com/fxavigomez/",
+          "https://www.youtube.com/c/XaviGomezC"
         ],
         "knowsAbout": [
           "Desarrollo Android",
