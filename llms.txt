@@ -12,7 +12,8 @@ La página principal reúne información pública sobre Xavier Gómez, su experi
 
 - [Asistente Taxista Salou](https://fxavigomez.es/asistente-taxista-salou/): Web pública oficial, soporte y acceso a la información legal de la aplicación.
 - [Asistente Taxista Salou en Google Play](https://play.google.com/store/apps/details?id=com.taxisalou.app): Aplicación Android publicada para consultas y utilidades del trabajo diario del taxi.
-- [Proyectos de desarrollo](https://fxavigomez.es/#proyectos): Selección de aplicaciones Android, herramientas y proyectos web.
+- [Asistente Taxista Salou en App Store](https://apps.apple.com/es/app/asistente-taxista-salou/id6821425402): Versión para iPhone y iPad publicada en la App Store.
+- [Proyectos de desarrollo](https://fxavigomez.es/#proyectos): Selección de aplicaciones Android y iOS, herramientas y proyectos web.
 - [Tecnología](https://fxavigomez.es/#tecnologia): Áreas y herramientas de desarrollo con las que trabaja actualmente.
 
 ## Trayectoria
