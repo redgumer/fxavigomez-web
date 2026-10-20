@@ -83,7 +83,15 @@ img { max-width: 100%; height: auto; }
 h1, h2, h3 { line-height: 1.15; }
 h1 { margin: 16px 0 24px; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -.055em; }
 .hero__lead { max-width: 680px; color: rgba(255,255,255,.73); font-size: clamp(1.08rem, 1.8vw, 1.32rem); }
-.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.store-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; width: 100%; }
+.store-links--hero { margin-top: 32px; }
+.store-badge { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; border-radius: 7px; transition: opacity .2s ease; }
+.store-badge:hover { opacity: .8; }
+.store-badge:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.store-badge img { display: block; width: auto; max-width: 100%; object-fit: contain; }
+.store-badge--apple img { height: 48px; }
+.store-badge--google img { height: 63px; }
 .button {
   display: inline-flex;
   align-items: center;
@@ -135,6 +143,7 @@ h1 { margin: 16px 0 24px; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -.0
 .site-footer { background: #050b08; color: rgba(255,255,255,.7); }
 .site-footer__inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .site-footer a { color: #fff; }
+.apple-credit { display: block; font-size: .68rem; margin-top: 8px; opacity: .75; }
 .site-footer img { width: 38px; height: 38px; border-radius: 50%; }
 
 @media (max-width: 780px) {
@@ -149,5 +158,5 @@ h1 { margin: 16px 0 24px; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -.0
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .link-card { transition: none; }
+  .link-card, .store-badge { transition: none; }
 }
