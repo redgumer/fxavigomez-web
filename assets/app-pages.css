@@ -86,12 +86,11 @@ h1 { margin: 16px 0 24px; font-size: clamp(3rem, 7vw, 6rem); letter-spacing: -.0
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 .store-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; width: 100%; }
 .store-links--hero { margin-top: 32px; }
-.store-badge { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; border-radius: 7px; transition: opacity .2s ease; }
-.store-badge:hover { opacity: .8; }
+.store-badge { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 150px; width: 150px; height: 48px; max-width: 100%; background: #000; border: 1px solid rgba(255,255,255,.4); border-radius: 9px; overflow: hidden; transition: opacity .2s ease; }
+.store-badge:hover { opacity: .82; }
 .store-badge:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
-.store-badge img { display: block; width: auto; max-width: 100%; object-fit: contain; }
-.store-badge--apple img { height: 48px; }
-.store-badge--google img { height: 63px; }
+.store-badge img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.store-badge--google img { transform: scale(1.13); }
 .button {
   display: inline-flex;
   align-items: center;
