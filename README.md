@@ -11,3 +11,6 @@ Deployment refresh: Cloudflare Pages runtime variables configured.
 - `/asistente-taxista-salou/eliminar-cuenta/`
 
 The legal content is migrated from the existing Firebase Hosting pages. Firebase remains the application's technical infrastructure; `fxavigomez.es` is the canonical public identity.
+
+- `/placablava/`, `/placablava/privacidad/`, `/placablava/condiciones/` (castellano)
+- `/placablava/ca/`, `/placablava/ca/privacitat/`, `/placablava/ca/condicions/` (català)
